@@ -24,8 +24,10 @@ export default function Hero() {
           </motion.p>
 
           <h1 className="mt-5 font-serif text-[clamp(3rem,8.5vw,6.6rem)] font-medium leading-[0.95] tracking-[-0.02em] text-ink">
-            <MaskLine delay={0.05}>{identity.firstName}</MaskLine>
-            <MaskLine delay={0.13} className="italic text-emerald">
+            <MaskLine immediate delay={0.05}>
+              {identity.firstName}
+            </MaskLine>
+            <MaskLine immediate delay={0.13} className="italic text-emerald">
               {identity.lastName}
             </MaskLine>
           </h1>
