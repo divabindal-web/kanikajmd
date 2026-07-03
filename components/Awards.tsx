@@ -2,6 +2,7 @@ import { Reveal } from "./Motion";
 import { ArrowUpRight } from "./Icons";
 import MoreLink from "./MoreLink";
 import { awards } from "@/lib/content";
+import { portraitPhoto, heroPhoto } from "@/lib/images";
 
 type Item = { title: string; meta: string; blurb?: string; href: string };
 
@@ -30,7 +31,7 @@ export function AwardsList({ items }: { items: Item[] }) {
   );
 }
 
-const FEATURED_IMAGES = ["/kanika-portrait.jpg", "/kanika-hero.jpg"];
+const FEATURED_IMAGES = [portraitPhoto, heroPhoto];
 
 export default function AwardsSection() {
   const featured = awards.slice(0, 2);
