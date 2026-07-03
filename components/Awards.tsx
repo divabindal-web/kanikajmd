@@ -28,42 +28,9 @@ function Seal({ className = "h-6 w-6" }: { className?: string }) {
   );
 }
 
-/* Editorial honour-roll list (used on the /awards page and as a home preview) */
-export function AwardsList({ items }: { items: Item[] }) {
-  return (
-    <ul className="border-t border-line">
-      {items.map((a) => (
-        <Reveal key={a.href}>
-          <li>
-            <a
-              href={a.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative grid grid-cols-[auto_1fr_auto] items-center gap-4 overflow-hidden border-b border-line py-6 sm:gap-8 sm:py-7"
-            >
-              <span className="absolute inset-0 z-0 origin-left scale-x-0 bg-emerald/[0.05] transition-transform duration-500 ease-editorial group-hover:scale-x-100" />
-              <span className="relative z-10 flex items-center gap-4">
-                <span className="hidden text-emerald/50 transition-colors duration-500 group-hover:text-emerald sm:block">
-                  <Seal className="h-7 w-7" />
-                </span>
-                <span className="w-[4.5rem] font-serif text-2xl font-medium leading-none text-emerald sm:w-24 sm:text-3xl">
-                  {a.meta}
-                </span>
-              </span>
-              <span className="relative z-10 font-serif text-xl font-medium leading-snug tracking-tight text-ink transition-all duration-500 group-hover:translate-x-1 group-hover:text-emerald sm:text-2xl">
-                {a.title}
-              </span>
-              <ArrowUpRight className="relative z-10 h-4 w-4 shrink-0 -translate-x-2 text-emerald opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" />
-            </a>
-          </li>
-        </Reveal>
-      ))}
-    </ul>
-  );
-}
-
 const FEATURED_IMAGES = [portraitPhoto, heroPhoto];
 
+/* Large photo award, magazine-cover treatment (no colour wash) */
 function FeaturedAward({ a, img }: { a: Item; img: string }) {
   return (
     <Reveal>
@@ -71,31 +38,31 @@ function FeaturedAward({ a, img }: { a: Item; img: string }) {
         href={a.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative block aspect-[5/6] overflow-hidden border border-line sm:aspect-[4/5]"
+        className="group relative block aspect-[4/5] overflow-hidden border border-line bg-ink"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={img}
           alt=""
           aria-hidden="true"
-          className="duotone absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          className="photo-grade absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-emerald/60 transition-colors duration-500 group-hover:bg-emerald/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-deep via-emerald-deep/35 to-emerald-deep/5" />
-        <span className="pointer-events-none absolute -right-2 top-8 font-serif text-[7.5rem] font-medium leading-none text-white/10 sm:text-[9rem]">
+        <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-ink/70 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-ink/95 via-ink/45 to-transparent" />
+        <span className="pointer-events-none absolute -right-2 top-10 font-serif text-[6.5rem] font-medium leading-none text-white/10 sm:text-[8rem]">
           {a.meta}
         </span>
         <div className="relative flex h-full flex-col justify-between p-8 text-paper sm:p-10">
           <div className="flex items-center justify-between">
             <span className="label text-paper/90">{a.meta}</span>
-            <Seal className="h-7 w-7 text-paper/80" />
+            <Seal className="h-7 w-7 text-paper/85" />
           </div>
           <div>
-            <h3 className="font-serif text-3xl font-medium leading-[1.1] tracking-tight text-paper sm:text-[2.7rem]">
+            <h3 className="font-serif text-3xl font-medium leading-[1.1] tracking-tight text-paper sm:text-[2.6rem]">
               {a.title}
             </h3>
             {a.blurb && (
-              <p className="mt-3 max-w-xs text-sm leading-relaxed text-paper/80">
+              <p className="mt-3 max-w-xs text-sm leading-relaxed text-paper/75">
                 {a.blurb}
               </p>
             )}
@@ -106,18 +73,69 @@ function FeaturedAward({ a, img }: { a: Item; img: string }) {
   );
 }
 
+/* Graphic award card with a large seal watermark */
+function AwardCard({ a }: { a: Item }) {
+  return (
+    <Reveal>
+      <a
+        href={a.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative flex min-h-[210px] flex-col justify-between overflow-hidden border border-line bg-paper p-8 transition-all duration-500 hover:-translate-y-1 hover:border-emerald sm:min-h-[240px] sm:p-9"
+      >
+        <span className="pointer-events-none absolute -right-8 -top-8 text-emerald/[0.06] transition-all duration-500 group-hover:rotate-12 group-hover:text-emerald/10">
+          <Seal className="h-44 w-44" />
+        </span>
+        <div className="relative flex items-center justify-between">
+          <span className="text-emerald">
+            <Seal className="h-8 w-8" />
+          </span>
+          <span className="label text-muted">{a.meta}</span>
+        </div>
+        <div className="relative flex items-end justify-between gap-4">
+          <h3 className="font-serif text-2xl font-medium leading-[1.12] tracking-tight text-ink transition-colors duration-500 group-hover:text-emerald sm:text-[1.8rem]">
+            {a.title}
+          </h3>
+          <ArrowUpRight className="mb-1 h-4 w-4 shrink-0 -translate-x-1 text-emerald opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" />
+        </div>
+      </a>
+    </Reveal>
+  );
+}
+
+/* Full awards layout: two photo features + a graphic card grid. */
+export function AwardsList({ items }: { items: Item[] }) {
+  const featured = items.slice(0, 2);
+  const rest = items.slice(2);
+  return (
+    <div>
+      <div className="grid gap-5 md:grid-cols-2">
+        {featured.map((a, i) => (
+          <FeaturedAward key={a.href} a={a} img={FEATURED_IMAGES[i]} />
+        ))}
+      </div>
+      {rest.length > 0 && (
+        <div className="mt-5 grid gap-5 sm:grid-cols-2">
+          {rest.map((a) => (
+            <AwardCard key={a.href} a={a} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AwardsSection() {
   const featured = awards.slice(0, 2);
-  const more = awards.slice(2, 5);
   return (
-    <section id="awards" className="bg-mist px-5 py-20 sm:px-8 md:py-24">
+    <section id="awards" className="bg-mist px-5 py-16 sm:px-8 md:py-20">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex items-end justify-between gap-4">
+        <div className="mb-10 flex items-end justify-between gap-4">
           <div className="flex items-center gap-4">
             <Seal className="hidden h-9 w-9 text-emerald sm:block" />
             <div>
               <span className="label text-emerald">Awards</span>
-              <h2 className="mt-3 font-serif text-4xl font-medium leading-none tracking-tight text-ink sm:text-5xl">
+              <h2 className="mt-3 font-serif text-3xl font-medium leading-none tracking-tight text-ink sm:text-4xl">
                 Recognition
               </h2>
             </div>
@@ -129,10 +147,6 @@ export default function AwardsSection() {
           {featured.map((a, i) => (
             <FeaturedAward key={a.href} a={a} img={FEATURED_IMAGES[i]} />
           ))}
-        </div>
-
-        <div className="mt-6">
-          <AwardsList items={more} />
         </div>
       </div>
     </section>
