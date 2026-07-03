@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Reveal } from "./Motion";
 import { ArrowUpRight } from "./Icons";
 import { bioShort, bioFull, highlights, quote, identity } from "@/lib/content";
+import { portraitPhoto } from "@/lib/images";
 
 export default function AboutSpread({ page = false }: { page?: boolean }) {
   const paras = page ? bioFull : bioShort;
@@ -21,7 +22,7 @@ export default function AboutSpread({ page = false }: { page?: boolean }) {
             <div className="relative aspect-[4/5] w-full overflow-hidden border border-line">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/kanika-portrait.jpg"
+                src={portraitPhoto}
                 alt={identity.name}
                 className="photo-grade h-full w-full object-cover"
               />
