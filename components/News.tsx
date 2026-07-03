@@ -57,7 +57,7 @@ export default function NewsSection() {
         </div>
 
         <div className="lg:col-span-7 lg:col-start-6">
-          <NewsList items={news.slice(0, 6)} />
+          <NewsList items={news.slice(0, 5)} />
         </div>
       </div>
     </section>
