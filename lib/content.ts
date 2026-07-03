@@ -16,8 +16,7 @@ export const identity = {
   metaDescription: `Kanika Gupta Shori, COO and Co-Founder of Square Yards, honored as Woman Entrepreneur of the Year. Her visionary leadership is reshaping real estate with innovation and empowerment.`,
 };
 
-// Her own share asset. Replace with an official high-res portrait when ready.
-export const heroImage = `${SITE}/website/images/fb.jpg`;
+export const heroImage = `/kanika-hero.jpg`;
 
 export const bioShort = [
   `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. In just five years she scaled an Online to Offline platform into the country's largest distributor of new homes, with 2,700 employees across 10 countries and 40 cities.`,
@@ -50,8 +49,6 @@ export const stats = [
   { prefix: "", value: 2700, suffix: "", caption: "Employees" },
   { prefix: "", value: 10, suffix: "", caption: "Countries" },
   { prefix: "", value: 40, suffix: "", caption: "Cities" },
-  { prefix: "", value: 500, suffix: "+", caption: "Partner developers" },
-  { prefix: "", value: 90, suffix: "+", caption: "Banks and NBFCs" },
 ];
 
 export const pressNames = [
@@ -76,8 +73,8 @@ export const news = [
 ];
 
 export const awards = [
-  { title: `Women Icon of the Year`, meta: `2023`, href: `${SITE}/awards/kanika-gupta-shori-wins-the-women-icon-of-the-year-award-2023` },
-  { title: `Entrepreneur of the Year, GIWL`, meta: `2019`, href: `${SITE}/awards/kanika-gupta-shori-awarded-with-entrepreneur-of-the-year-2019-by-great-indian-women-leadership` },
+  { title: `Women Icon of the Year`, meta: `2023`, blurb: `Recognising India's most influential women leaders.`, href: `${SITE}/awards/kanika-gupta-shori-wins-the-women-icon-of-the-year-award-2023` },
+  { title: `Entrepreneur of the Year, GIWL`, meta: `2019`, blurb: `Great Indian Women Leadership Award for enterprise.`, href: `${SITE}/awards/kanika-gupta-shori-awarded-with-entrepreneur-of-the-year-2019-by-great-indian-women-leadership` },
   { title: `Times 40 Under 40`, meta: `The Times`, href: `${SITE}/awards/kanika-gupta-shori-makes-it-to-list-times-40-under-40-recognizes-true-leaders-in-various-segments` },
   { title: `Businessworld 40 Under 40`, meta: `2019`, href: `${SITE}/awards/ms-kanika-gupta-shori-presented-with-businessworld-40-under-40-award` },
   { title: `BW Disrupt 40 Under 40`, meta: `BW Disrupt`, href: `${SITE}/awards/changer-makers-innovators-celebrated-at-4th-edition-of-bw-disrupt-under-40` },
