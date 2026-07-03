@@ -49,18 +49,15 @@ export function MaskLine({
   immediate?: boolean;
 }) {
   const reduce = useReducedMotion();
-  const motionProps = immediate
-    ? { animate: { y: "0%" } }
-    : {
-        whileInView: { y: "0%" },
-        viewport: { once: true, margin: "-40px" },
-      };
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const show = reduce || immediate || inView;
   return (
-    <span className="block overflow-hidden pb-[0.1em]">
+    <span ref={ref} className="block overflow-hidden pb-[0.1em]">
       <motion.span
         className={`block ${className ?? ""}`}
-        initial={reduce ? { y: "0%" } : { y: "115%" }}
-        {...motionProps}
+        initial={{ y: reduce ? "0%" : "115%" }}
+        animate={{ y: show ? "0%" : "115%" }}
         transition={{ duration: 0.95, delay, ease: EASE }}
       >
         {children}
