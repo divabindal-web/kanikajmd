@@ -55,6 +55,11 @@ body {
   filter: grayscale(0.12) contrast(1.03) brightness(1.01);
 }
 
+/* Full monochrome for emerald-duotone cards */
+.duotone {
+  filter: grayscale(1) contrast(1.05);
+}
+
 /* Marquee */
 .marquee {
   display: flex;
