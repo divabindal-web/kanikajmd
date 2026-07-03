@@ -1,0 +1,124 @@
+// ---------------------------------------------------------------------------
+// Single source of truth for all copy + links. No em dashes anywhere.
+// News / Awards individual links point to the live kanikaguptashori.com pages
+// (they resolve today). Swap to relative paths if you migrate those pages.
+// ---------------------------------------------------------------------------
+
+const SITE = "https://www.kanikaguptashori.com";
+
+export const identity = {
+  name: `Kanika Gupta Shori`,
+  firstName: `Kanika Gupta`,
+  lastName: `Shori`,
+  title: `Co-Founder and Chief Operating Officer, Square Yards`,
+  kicker: `CO-FOUNDER AND COO, SQUARE YARDS`,
+  positioning: `Building India's largest real estate marketplace, from search to settlement.`,
+  metaDescription: `Kanika Gupta Shori, COO and Co-Founder of Square Yards, honored as Woman Entrepreneur of the Year. Her visionary leadership is reshaping real estate with innovation and empowerment.`,
+};
+
+// Her own share asset. Replace with an official high-res portrait when ready.
+export const heroImage = `${SITE}/website/images/fb.jpg`;
+
+export const bioShort = [
+  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. In just five years she scaled an Online to Offline platform into the country's largest distributor of new homes, with 2,700 employees across 10 countries and 40 cities.`,
+  `A Wharton Business School alumna and CFA Level 2 candidate, she spent over eleven years across asset management and entertainment before Square Yards, and invested family wealth as an angel investor while raising two boys.`,
+];
+
+export const bioFull = [
+  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. Square Yards is an Online to Offline (O2O) transaction platform that helps simplify the home buying process by providing end to end solutions for homebuyers. Square Yards has become India's largest distributor of new homes with 2,700 employees and presence across 10 countries and 40 cities in just 5 years since its inception. The platform facilitates USD $1 billion in gross transactions annually, driving USD $30 million in annualized revenue, and is one of the few Indian startups operating at EBITDA break-even.`,
+  `Kanika is a Wharton Business School alumna, a CFA Level 2 candidate, and holds a Bachelor in Economics from Delhi University. She is a highly qualified professional with over 11 years of experience, having worked across asset management and entertainment before starting Square Yards. She is a mother of two boys, and while bringing up her kids she invested family wealth in other startups as an angel investor.`,
+  `A multi-talented and versatile personality, she has been associated with social causes across women empowerment and children welfare, and has won several accolades including Young Achiever and Woman Icon. An avid traveller across 6 continents and 40+ countries, she is also a PADI certified scuba diver who has cage dived with sharks in the Pacific Ocean, explored ship wrecks in the Java Sea, dived caves in the Indian Ocean, and seen the corals of the Great Barrier Reef and the Red Sea.`,
+];
+
+export const quote = {
+  text: `As a woman, faith in yourself is the most important thing.`,
+  attribution: `Kanika Gupta Shori`,
+};
+
+export const highlights = [
+  `Wharton Alumna`,
+  `CFA Level 2 Candidate`,
+  `11+ Years Experience`,
+  `Angel Investor`,
+  `40+ Countries`,
+  `PADI Certified Diver`,
+];
+
+export const stats = [
+  { prefix: "$", value: 1, suffix: "B", caption: "Gross transactions, annually" },
+  { prefix: "$", value: 30, suffix: "M", caption: "Annualized revenue" },
+  { prefix: "", value: 2700, suffix: "", caption: "Employees" },
+  { prefix: "", value: 10, suffix: "", caption: "Countries" },
+  { prefix: "", value: 40, suffix: "", caption: "Cities" },
+  { prefix: "", value: 500, suffix: "+", caption: "Partner developers" },
+  { prefix: "", value: 90, suffix: "+", caption: "Banks and NBFCs" },
+];
+
+export const pressNames = [
+  `Inc42`,
+  `Forbes India`,
+  `Livemint`,
+  `Josh Talks`,
+  `GIWL Summit 2019`,
+  `YourStory`,
+];
+
+export const news = [
+  { title: `Kanika Gupta Shori on Women Leadership and Technology Transforming Indian Real Estate`, href: `${SITE}/news/kanika-gupta-shori-on-women-leadership-and-technology-transforming-indian-real-estate` },
+  { title: `The Rise of Real Estate Investments Among Bollywood Elites in 2024`, href: `${SITE}/news/the-rise-of-real-estate-investments-among-bollywood-elites-in-2024` },
+  { title: `The Ultimate Strength of Bulk Buying in Real Estate`, href: `${SITE}/news/the-ultimate-strength-of-bulk-buying-in-real-estate` },
+  { title: `Celebrity Property Purchases Are Transforming Indian Real Estate`, href: `${SITE}/news/celebrity-property-purchases-are-transforming-indian-real-estate` },
+  { title: `Bachchans Acing the Race in Bollywood's Real Estate Love Affair in Mumbai`, href: `${SITE}/news/bachchans-acing-the-race-in-bollywoods-real-estate-love-affair-in-mumbai` },
+  { title: `Why Real Estate Developers Are Not Taking to Affordable Housing`, href: `${SITE}/news/why-real-estate-developers-are-not-taking-to-affordable-housing` },
+  { title: `Kanika Gupta Shori Talks About Difficulties Faced by Women-Driven Startups`, href: `${SITE}/news/kanika-gupta-shori-talks-about-difficulties-faced-by-women-driven-startups` },
+  { title: `Women are Steadily Reshaping Indian Real Estate Narratives`, href: `${SITE}/news/women-are-steadily-reshaping-indian-real-estate-narratives` },
+  { title: `Indian Real Estate Market to Become More Robust in Times of Constant Price Rises`, href: `${SITE}/news/indian-real-estate-market-to-become-more-robust-in-times-of-constant-price-rises` },
+];
+
+export const awards = [
+  { title: `Women Icon of the Year`, meta: `2023`, href: `${SITE}/awards/kanika-gupta-shori-wins-the-women-icon-of-the-year-award-2023` },
+  { title: `Entrepreneur of the Year, GIWL`, meta: `2019`, href: `${SITE}/awards/kanika-gupta-shori-awarded-with-entrepreneur-of-the-year-2019-by-great-indian-women-leadership` },
+  { title: `Times 40 Under 40`, meta: `The Times`, href: `${SITE}/awards/kanika-gupta-shori-makes-it-to-list-times-40-under-40-recognizes-true-leaders-in-various-segments` },
+  { title: `Businessworld 40 Under 40`, meta: `2019`, href: `${SITE}/awards/ms-kanika-gupta-shori-presented-with-businessworld-40-under-40-award` },
+  { title: `BW Disrupt 40 Under 40`, meta: `BW Disrupt`, href: `${SITE}/awards/changer-makers-innovators-celebrated-at-4th-edition-of-bw-disrupt-under-40` },
+  { title: `Realty+ 40 Under 40`, meta: `Realty+`, href: `${SITE}/awards/young-industry-leaders-feted-at-realty-40-under-40-conclave-awards-grand-finale` },
+  { title: `Red Herring Top 100 Asia`, meta: `2019`, href: `${SITE}/awards/square-yards-recognized-as-red-herring-top-100-asia-award-winner-2019` },
+  { title: `Golden Brick Awards`, meta: `2019`, href: `${SITE}/awards/square-yards-bagged-golden-brick-awards-2019` },
+  { title: `Real Estate Website of the Year`, meta: `2019`, href: `${SITE}/awards/square-yards-has-won-real-estate-website-of-the-year-2019` },
+];
+
+export const youtubeChannel = `https://www.youtube.com/channel/UCtvscMBw983oIwtcdw62NYg`;
+
+export const videos = [
+  { id: `N8_iuqP_XM4`, title: `Josh Talks: What It Takes to Become a Successful Entrepreneur`, tag: `Josh Talks` },
+  { id: `K3jIPu0VSzU`, title: `Growth Hacks: Building a Real Estate Marketplace`, tag: `Interview` },
+  { id: `5bR9qSj0Hqc`, title: `How Square Yards Helped Her Discover Herself`, tag: `Feature` },
+];
+
+export const squareYardsShort = `Square Yards is a technology-enabled, global real estate aggregator and India's largest player for primary residential real estate. Its platform covers the full journey, from search and discovery to research, transactions, home loans and post-sales service, integrating buyers with a network of 500+ partner developers and 90+ banks and NBFCs.`;
+
+export const socials = [
+  { name: "linkedin" as const, label: "LinkedIn", href: "https://www.linkedin.com/in/kanikaguptashori/" },
+  { name: "instagram" as const, label: "Instagram", href: "https://www.instagram.com/kanika_gupta_shori/" },
+  { name: "facebook" as const, label: "Facebook", href: "https://www.facebook.com/kanika.shori" },
+  { name: "youtube" as const, label: "YouTube", href: "https://www.youtube.com/channel/UCtvscMBw983oIwtcdw62NYg" },
+];
+
+export const squareYardsSocials = [
+  { name: "linkedin" as const, label: "LinkedIn", href: "https://www.linkedin.com/company/square-yards" },
+  { name: "instagram" as const, label: "Instagram", href: "https://www.instagram.com/square_yards/" },
+  { name: "facebook" as const, label: "Facebook", href: "https://www.facebook.com/SquareYards" },
+];
+
+export const networkLinks = [
+  { label: "Property News India", href: "https://www.globalrealtybytes.com/" },
+  { label: "Book Property Online", href: "https://book.squareyards.com/" },
+  { label: "Square Yards Wiki", href: "https://en.wikipedia.org/wiki/Square_Yards" },
+];
+
+export const navLinks = [
+  { label: "About", href: "/about" },
+  { label: "News", href: "/news" },
+  { label: "Awards", href: "/awards" },
+  { label: "Videos", href: "/videos" },
+];
