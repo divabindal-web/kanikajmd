@@ -5,17 +5,18 @@ import Link from "next/link";
 import { MaskLine } from "./Motion";
 import HeroField from "./HeroField";
 import { identity } from "@/lib/content";
+import { heroPhoto } from "@/lib/images";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative flex items-center overflow-hidden bg-paper px-5 pb-24 pt-32 sm:px-8 lg:min-h-[92vh]">
+    <section className="relative overflow-hidden bg-paper px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:min-h-[92vh] lg:pt-32">
       <HeroField />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl">
-        <div className="max-w-3xl">
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:min-h-[inherit] lg:grid-cols-12 lg:gap-14">
+        <div className="lg:col-span-7">
           <motion.p
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -25,7 +26,7 @@ export default function Hero() {
             {identity.kicker}
           </motion.p>
 
-          <h1 className="mt-5 font-serif text-[clamp(3rem,8.5vw,6.8rem)] font-medium leading-[0.95] tracking-[-0.02em] text-ink">
+          <h1 className="mt-5 font-serif text-[clamp(3rem,8.5vw,6.6rem)] font-medium leading-[0.95] tracking-[-0.02em] text-ink">
             <MaskLine immediate delay={0.05}>
               {identity.firstName}
             </MaskLine>
@@ -63,6 +64,23 @@ export default function Hero() {
             </Link>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.03 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
+          className="lg:col-span-5"
+        >
+          <div className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-mist">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={heroPhoto}
+              alt={identity.name}
+              className="photo-grade h-full w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
