@@ -11,7 +11,7 @@ export default function Numbers() {
           <span className="label text-paper/50">Square Yards</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-9 sm:grid-cols-3 lg:grid-cols-7 lg:gap-x-5">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-9 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-8">
           {stats.map((s, i) => (
             <Reveal key={i} delay={i * 0.04}>
               <div className="border-t border-white/20 pt-4">
