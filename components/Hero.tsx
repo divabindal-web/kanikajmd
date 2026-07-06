@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { MaskLine } from "./Motion";
 import HeroField from "./HeroField";
-import { identity } from "@/lib/content";
+import { identity, socials } from "@/lib/content";
 import { heroPhoto } from "@/lib/images";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -51,7 +51,9 @@ export default function Hero() {
             className="mt-9 flex flex-wrap items-center gap-6"
           >
             <a
-              href="#connect"
+              href={socials[0].href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 bg-emerald px-6 py-3.5 text-paper transition-colors duration-300 hover:bg-emerald-deep"
             >
               <span className="label text-[0.68rem]">Connect</span>
