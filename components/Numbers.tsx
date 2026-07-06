@@ -3,22 +3,18 @@ import { stats } from "@/lib/content";
 
 export default function Numbers() {
   return (
-    <section className="bg-emerald px-5 py-14 text-paper sm:px-8 md:py-16">
+    <section className="bg-emerald px-5 py-12 text-paper sm:px-8 md:py-14">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 flex items-center gap-4">
-          <span className="label text-paper/70">By the Numbers</span>
-          <span className="h-px flex-1 bg-white/15" />
-          <span className="label text-paper/50">Square Yards</span>
-        </div>
+        <span className="label text-paper/60">Square Yards by the numbers</span>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-9 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-8">
+        <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map((s, i) => (
             <Reveal key={i} delay={i * 0.04}>
-              <div className="border-t border-white/20 pt-4">
-                <div className="num font-sans text-3xl font-light leading-none tracking-tight text-paper sm:text-[2.4rem]">
+              <div>
+                <div className="num font-serif text-4xl font-medium leading-none tracking-tight text-paper sm:text-5xl">
                   <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} />
                 </div>
-                <p className="mt-2.5 text-[0.72rem] leading-snug text-paper/55">
+                <p className="mt-2 text-xs leading-snug text-paper/55">
                   {s.caption}
                 </p>
               </div>
@@ -26,7 +22,7 @@ export default function Numbers() {
           ))}
         </div>
 
-        <p className="label mt-10 text-paper/45">
+        <p className="label mt-8 text-paper/40">
           Among the few Indian startups operating at EBITDA break-even
         </p>
       </div>
