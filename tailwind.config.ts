@@ -19,7 +19,7 @@ const config: Config = {
         muted: "#6C7174",
       },
       fontFamily: {
-        serif: ["Cormorant Garamond", "Georgia", "serif"],
+        serif: ["Newsreader", "Georgia", "serif"],
         sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
       },
       letterSpacing: {
