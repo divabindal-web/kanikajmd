@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PageHeader from "@/components/PageHeader";
+import HeroField from "@/components/HeroField";
 import { VideosList } from "@/components/Videos";
 import { ArrowUpRight } from "@/components/Icons";
 import ConnectSection from "@/components/ConnectSection";
@@ -14,19 +14,28 @@ export const metadata: Metadata = {
 export default function VideosPage() {
   return (
     <>
-      <PageHeader
-        kicker="Videos"
-        title={
-          <>
-            In <span className="italic text-emerald">conversation</span>
-          </>
-        }
-        intro="Talks, interviews and features. Watch the full collection on her YouTube channel."
-      />
-      <section className="bg-ink px-5 py-16 text-paper sm:px-8 md:py-20">
+      <header className="relative overflow-hidden bg-paper px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
+        <HeroField />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <div className="flex items-center gap-3">
+            <span className="label text-emerald">Videos</span>
+            <span className="h-px w-8 bg-line" />
+            <span className="label text-muted">{videos.length} conversations</span>
+          </div>
+          <h1 className="mt-5 font-serif text-[clamp(3.2rem,9vw,6.5rem)] font-medium leading-[0.9] tracking-[-0.03em] text-ink">
+            In conversation<span className="text-emerald">.</span>
+          </h1>
+          <p className="mt-6 max-w-xl text-[0.95rem] leading-relaxed text-muted">
+            Talks, interviews and features. Watch the full collection on her
+            YouTube channel.
+          </p>
+        </div>
+      </header>
+
+      <section className="bg-ink px-5 py-14 text-paper sm:px-8 md:py-16">
         <div className="mx-auto max-w-7xl">
           <VideosList items={videos} />
-          <div className="mt-14">
+          <div className="mt-12">
             <a
               href={youtubeChannel}
               target="_blank"
@@ -39,6 +48,7 @@ export default function VideosPage() {
           </div>
         </div>
       </section>
+
       <ConnectSection />
     </>
   );
