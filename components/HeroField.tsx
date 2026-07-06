@@ -4,8 +4,9 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 
 /**
- * Ambient, low-opacity emerald dot field that gently warps and brightens
- * around the cursor. Sits behind the hero content, ignores pointer events.
+ * Ambient emerald dot field.
+ * v2: dots drift on a slow sine wave even without the cursor, and the
+ * cursor warps, brightens and slightly enlarges nearby dots.
  */
 export default function HeroField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -19,16 +20,19 @@ export default function HeroField() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const SPACING = 36; // gap between dots
-    const DOT = 1.35; // base dot radius
-    const RADIUS = 140; // cursor influence radius
-    const PUSH = 24; // how far dots slide from the cursor
-    const BASE_ALPHA = 0.14; // resting opacity (subtle)
+    const SPACING = 34;
+    const DOT = 1.3;
+    const RADIUS = 150;
+    const PUSH = 26;
+    const BASE_ALPHA = 0.13;
+    const DRIFT = 3.2; // ambient wave amplitude, px
+    const SPEED = 0.00045; // ambient wave speed
 
     let w = 0;
     let h = 0;
     let dpr = 1;
-    let dots: { bx: number; by: number; x: number; y: number }[] = [];
+    let dots: { bx: number; by: number; x: number; y: number; ph: number }[] =
+      [];
     const mouse = { x: -9999, y: -9999 };
     let raf = 0;
 
@@ -49,7 +53,7 @@ export default function HeroField() {
         for (let j = 0; j < rows; j++) {
           const bx = i * SPACING;
           const by = j * SPACING;
-          dots.push({ bx, by, x: bx, y: by });
+          dots.push({ bx, by, x: bx, y: by, ph: (i * 7 + j * 13) * 0.35 });
         }
       }
     };
@@ -64,8 +68,9 @@ export default function HeroField() {
       }
     };
 
-    const draw = () => {
+    const draw = (now: number) => {
       ctx.clearRect(0, 0, w, h);
+      const t = now * SPEED;
 
       if (mouse.x > -9000) {
         const g = ctx.createRadialGradient(
@@ -76,29 +81,39 @@ export default function HeroField() {
           mouse.y,
           RADIUS * 1.7
         );
-        g.addColorStop(0, "rgba(18,75,68,0.05)");
+        g.addColorStop(0, "rgba(18,75,68,0.055)");
         g.addColorStop(1, "rgba(18,75,68,0)");
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, w, h);
       }
 
       for (const d of dots) {
+        // ambient home position drifts on a slow wave
+        const hx = d.bx + Math.sin(t + d.ph) * DRIFT;
+        const hy = d.by + Math.cos(t * 0.9 + d.ph * 1.3) * DRIFT;
+
         const dx = d.x - mouse.x;
         const dy = d.y - mouse.y;
         const dist = Math.hypot(dx, dy) || 0.001;
-        let tx = d.bx;
-        let ty = d.by;
+        let tx = hx;
+        let ty = hy;
         let near = 0;
         if (dist < RADIUS) {
           near = 1 - dist / RADIUS;
-          tx = d.bx + (dx / dist) * near * PUSH;
-          ty = d.by + (dy / dist) * near * PUSH;
+          tx = hx + (dx / dist) * near * PUSH;
+          ty = hy + (dy / dist) * near * PUSH;
         }
-        d.x += (tx - d.x) * 0.12;
-        d.y += (ty - d.y) * 0.12;
+        d.x += (tx - d.x) * 0.11;
+        d.y += (ty - d.y) * 0.11;
+
+        // breathing alpha, brighter near the cursor
+        const breathe = 0.03 * Math.sin(t * 1.6 + d.ph);
         ctx.beginPath();
-        ctx.arc(d.x, d.y, DOT + near * 1.2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(18,75,68,${BASE_ALPHA + near * 0.5})`;
+        ctx.arc(d.x, d.y, DOT + near * 1.3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(18,75,68,${Math.max(
+          0.05,
+          BASE_ALPHA + breathe + near * 0.5
+        )})`;
         ctx.fill();
       }
 
