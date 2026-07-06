@@ -44,11 +44,11 @@ export default function NewsPage() {
       <section className="bg-paper px-5 pb-16 pt-28 sm:px-8 sm:pt-36 md:pb-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Sticky editorial rail */}
-          <aside className="lg:col-span-4">
+          <aside className="relative lg:col-span-4">
+            <div className="pointer-events-none absolute -inset-x-6 -inset-y-8 overflow-hidden">
+              <HeroField />
+            </div>
             <div className="relative lg:sticky lg:top-28">
-              <div className="pointer-events-none absolute -inset-6 -z-0 overflow-hidden">
-                <HeroField />
-              </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-3">
                   <span className="label text-emerald">News</span>
