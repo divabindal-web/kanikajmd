@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import HeroField from "@/components/HeroField";
-import { NewsLead, NewsRow } from "@/components/News";
 import ConnectSection from "@/components/ConnectSection";
+import { ArrowUpRight } from "@/components/Icons";
+import { Reveal } from "@/components/Motion";
 import { news } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -11,13 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default function NewsPage() {
-  const [lead, ...rest] = news;
-  const mid = Math.ceil(rest.length / 2);
-  const colA = rest.slice(0, mid);
-  const colB = rest.slice(mid);
   return (
     <>
-      <header className="relative overflow-hidden bg-paper px-5 pb-10 pt-32 sm:px-8 sm:pb-12 sm:pt-40">
+      <header className="relative overflow-hidden bg-paper px-5 pb-10 pt-32 sm:px-8 sm:pb-14 sm:pt-40">
         <HeroField />
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="flex items-center gap-3">
@@ -35,21 +32,32 @@ export default function NewsPage() {
         </div>
       </header>
 
-      <section className="bg-paper px-5 pb-14 sm:px-8 md:pb-16">
+      <section className="bg-paper px-5 pb-16 sm:px-8 md:pb-20">
         <div className="mx-auto max-w-7xl">
-          <NewsLead item={lead} />
-
-          <div className="mt-12 grid gap-x-12 lg:grid-cols-2">
-            <div className="border-b border-line">
-              {colA.map((item, i) => (
-                <NewsRow key={item.href} item={item} n={i + 2} />
-              ))}
-            </div>
-            <div className="border-b border-line">
-              {colB.map((item, i) => (
-                <NewsRow key={item.href} item={item} n={mid + i + 2} />
-              ))}
-            </div>
+          <div className="border-b border-line">
+            {news.map((item, i) => (
+              <Reveal key={item.href}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-baseline gap-6 overflow-hidden border-t border-line py-7 sm:gap-10 sm:py-8"
+                >
+                  <span className="absolute inset-0 z-0 origin-left scale-x-0 bg-emerald/[0.05] transition-transform duration-500 ease-editorial group-hover:scale-x-100" />
+                  <span className="label relative z-10 w-8 shrink-0 text-emerald/60 transition-colors duration-500 group-hover:text-emerald">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="relative z-10 flex-1 font-serif text-xl font-medium leading-[1.2] tracking-tight text-ink transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-emerald sm:text-3xl">
+                    {item.title}
+                  </span>
+                  <span className="relative z-10 hidden shrink-0 sm:block">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-emerald transition-all duration-500 group-hover:rotate-45 group-hover:border-emerald group-hover:bg-emerald group-hover:text-paper">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </span>
+                  </span>
+                </a>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
