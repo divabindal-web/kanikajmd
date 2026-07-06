@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function AwardsPage() {
   return (
     <>
-      <header className="relative overflow-hidden bg-paper px-5 pb-10 pt-32 sm:px-8 sm:pb-14 sm:pt-40">
+      <header className="relative overflow-hidden bg-paper px-5 pb-12 pt-28 sm:px-8 sm:pt-36">
         <HeroField />
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="flex items-center gap-3">
@@ -21,10 +21,10 @@ export default function AwardsPage() {
             <span className="h-px w-8 bg-line" />
             <span className="label text-muted">{awards.length} recognitions</span>
           </div>
-          <h1 className="mt-4 font-serif text-[clamp(2.6rem,7vw,5rem)] font-medium leading-[0.95] tracking-[-0.02em] text-ink">
-            The <span className="italic text-emerald">honour roll</span>
+          <h1 className="mt-5 font-serif text-[clamp(3.2rem,9vw,6.5rem)] font-medium leading-[0.9] tracking-[-0.03em] text-ink">
+            Honour roll<span className="text-emerald">.</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
+          <p className="mt-6 max-w-xl text-[0.95rem] leading-relaxed text-muted">
             A decade of recognition for leadership, entrepreneurship and building
             in an industry that rarely made room.
           </p>
