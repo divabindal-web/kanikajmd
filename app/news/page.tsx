@@ -11,53 +11,78 @@ export const metadata: Metadata = {
     "Press, features and commentary from Kanika Gupta Shori on women leadership, technology and the Indian real estate market.",
 };
 
+type Item = { title: string; tag?: string; href: string };
+
+function PressRow({ item, n }: { item: Item; n: number }) {
+  return (
+    <Reveal>
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative grid grid-cols-[2.2rem_1fr_auto] items-baseline gap-4 overflow-hidden border-t border-line py-6 sm:grid-cols-[2.6rem_6.5rem_1fr_auto] sm:gap-6 sm:py-7"
+      >
+        <span className="absolute inset-0 z-0 origin-bottom scale-y-0 bg-emerald transition-transform duration-500 ease-editorial group-hover:scale-y-100" />
+        <span className="label relative z-10 text-muted transition-colors duration-300 group-hover:text-paper/60">
+          {String(n).padStart(2, "0")}
+        </span>
+        <span className="label relative z-10 hidden text-emerald transition-colors duration-300 group-hover:text-paper/70 sm:block">
+          {item.tag ?? "Feature"}
+        </span>
+        <span className="relative z-10 font-serif text-xl font-medium leading-[1.18] tracking-tight text-ink transition-colors duration-300 group-hover:text-paper sm:text-2xl">
+          {item.title}
+        </span>
+        <ArrowUpRight className="relative z-10 h-4 w-4 shrink-0 translate-y-0.5 text-emerald transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0 group-hover:text-paper" />
+      </a>
+    </Reveal>
+  );
+}
+
 export default function NewsPage() {
   return (
     <>
-      <header className="relative overflow-hidden bg-paper px-5 pb-10 pt-32 sm:px-8 sm:pb-14 sm:pt-40">
-        <HeroField />
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <div className="flex items-center gap-3">
-            <span className="label text-emerald">News</span>
-            <span className="h-px w-8 bg-line" />
-            <span className="label text-muted">{news.length} features</span>
-          </div>
-          <h1 className="mt-4 font-serif text-[clamp(2.6rem,7vw,5rem)] font-medium leading-[0.95] tracking-[-0.02em] text-ink">
-            In the <span className="italic text-emerald">press</span>
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted">
-            Features, interviews and market commentary across leading Indian and
-            global publications.
-          </p>
-        </div>
-      </header>
+      <section className="bg-paper px-5 pb-16 pt-28 sm:px-8 sm:pt-36 md:pb-20">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-12 lg:gap-14">
+          {/* Sticky editorial rail */}
+          <aside className="lg:col-span-4">
+            <div className="relative lg:sticky lg:top-28">
+              <div className="pointer-events-none absolute -inset-6 -z-0 overflow-hidden">
+                <HeroField />
+              </div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-3">
+                  <span className="label text-emerald">News</span>
+                  <span className="h-px w-8 bg-line" />
+                  <span className="label text-muted">{news.length} features</span>
+                </div>
+                <h1 className="mt-5 font-serif text-[clamp(4rem,10vw,7.5rem)] font-medium leading-[0.88] tracking-[-0.03em] text-ink">
+                  Press<span className="text-emerald">.</span>
+                </h1>
+                <p className="mt-6 max-w-xs text-[0.95rem] leading-relaxed text-muted">
+                  Features, interviews and market commentary across leading
+                  Indian and global publications.
+                </p>
+                <div className="mt-9 flex items-center justify-between border-t border-line pt-5">
+                  <span className="label text-muted">Selected features</span>
+                  <span className="label text-emerald">Ongoing</span>
+                </div>
+              </div>
+            </div>
+          </aside>
 
-      <section className="bg-paper px-5 pb-16 sm:px-8 md:pb-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="border-b border-line">
-            {news.map((item, i) => (
-              <Reveal key={item.href}>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex items-baseline gap-6 overflow-hidden border-t border-line py-7 sm:gap-10 sm:py-8"
-                >
-                  <span className="absolute inset-0 z-0 origin-left scale-x-0 bg-emerald/[0.05] transition-transform duration-500 ease-editorial group-hover:scale-x-100" />
-                  <span className="label relative z-10 w-8 shrink-0 text-emerald/60 transition-colors duration-500 group-hover:text-emerald">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="relative z-10 flex-1 font-serif text-xl font-medium leading-[1.2] tracking-tight text-ink transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-emerald sm:text-3xl">
-                    {item.title}
-                  </span>
-                  <span className="relative z-10 hidden shrink-0 sm:block">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-emerald transition-all duration-500 group-hover:rotate-45 group-hover:border-emerald group-hover:bg-emerald group-hover:text-paper">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </span>
-                  </span>
-                </a>
-              </Reveal>
-            ))}
+          {/* Index */}
+          <div className="lg:col-span-8">
+            <div className="hidden grid-cols-[2.6rem_6.5rem_1fr_auto] gap-6 pb-4 sm:grid">
+              <span className="label text-muted">No</span>
+              <span className="label text-muted">Subject</span>
+              <span className="label text-muted">Feature</span>
+              <span />
+            </div>
+            <div className="border-b border-line">
+              {news.map((item, i) => (
+                <PressRow key={item.href} item={item} n={i + 1} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
