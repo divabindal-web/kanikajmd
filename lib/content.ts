@@ -61,27 +61,27 @@ export const pressNames = [
 ];
 
 export const news = [
-  { title: `Kanika Gupta Shori on Women Leadership and Technology Transforming Indian Real Estate`, href: `${SITE}/news/kanika-gupta-shori-on-women-leadership-and-technology-transforming-indian-real-estate` },
-  { title: `The Rise of Real Estate Investments Among Bollywood Elites in 2024`, href: `${SITE}/news/the-rise-of-real-estate-investments-among-bollywood-elites-in-2024` },
-  { title: `The Ultimate Strength of Bulk Buying in Real Estate`, href: `${SITE}/news/the-ultimate-strength-of-bulk-buying-in-real-estate` },
-  { title: `Celebrity Property Purchases Are Transforming Indian Real Estate`, href: `${SITE}/news/celebrity-property-purchases-are-transforming-indian-real-estate` },
-  { title: `Bachchans Acing the Race in Bollywood's Real Estate Love Affair in Mumbai`, href: `${SITE}/news/bachchans-acing-the-race-in-bollywoods-real-estate-love-affair-in-mumbai` },
-  { title: `Why Real Estate Developers Are Not Taking to Affordable Housing`, href: `${SITE}/news/why-real-estate-developers-are-not-taking-to-affordable-housing` },
-  { title: `Kanika Gupta Shori Talks About Difficulties Faced by Women-Driven Startups`, href: `${SITE}/news/kanika-gupta-shori-talks-about-difficulties-faced-by-women-driven-startups` },
-  { title: `Women are Steadily Reshaping Indian Real Estate Narratives`, href: `${SITE}/news/women-are-steadily-reshaping-indian-real-estate-narratives` },
-  { title: `Indian Real Estate Market to Become More Robust in Times of Constant Price Rises`, href: `${SITE}/news/indian-real-estate-market-to-become-more-robust-in-times-of-constant-price-rises` },
+  { title: `Kanika Gupta Shori on Women Leadership and Technology Transforming Indian Real Estate`, tag: `Leadership`, href: `${SITE}/news/kanika-gupta-shori-on-women-leadership-and-technology-transforming-indian-real-estate` },
+  { title: `The Rise of Real Estate Investments Among Bollywood Elites in 2024`, tag: `Celebrity`, href: `${SITE}/news/the-rise-of-real-estate-investments-among-bollywood-elites-in-2024` },
+  { title: `The Ultimate Strength of Bulk Buying in Real Estate`, tag: `Market`, href: `${SITE}/news/the-ultimate-strength-of-bulk-buying-in-real-estate` },
+  { title: `Celebrity Property Purchases Are Transforming Indian Real Estate`, tag: `Celebrity`, href: `${SITE}/news/celebrity-property-purchases-are-transforming-indian-real-estate` },
+  { title: `Bachchans Acing the Race in Bollywood's Real Estate Love Affair in Mumbai`, tag: `Celebrity`, href: `${SITE}/news/bachchans-acing-the-race-in-bollywoods-real-estate-love-affair-in-mumbai` },
+  { title: `Why Real Estate Developers Are Not Taking to Affordable Housing`, tag: `Housing`, href: `${SITE}/news/why-real-estate-developers-are-not-taking-to-affordable-housing` },
+  { title: `Kanika Gupta Shori Talks About Difficulties Faced by Women-Driven Startups`, tag: `Leadership`, href: `${SITE}/news/kanika-gupta-shori-talks-about-difficulties-faced-by-women-driven-startups` },
+  { title: `Women are Steadily Reshaping Indian Real Estate Narratives`, tag: `Leadership`, href: `${SITE}/news/women-are-steadily-reshaping-indian-real-estate-narratives` },
+  { title: `Indian Real Estate Market to Become More Robust in Times of Constant Price Rises`, tag: `Market`, href: `${SITE}/news/indian-real-estate-market-to-become-more-robust-in-times-of-constant-price-rises` },
 ];
 
 export const awards = [
   { title: `Women Icon of the Year`, meta: `2023`, blurb: `Recognising India's most influential women leaders.`, href: `${SITE}/awards/kanika-gupta-shori-wins-the-women-icon-of-the-year-award-2023` },
   { title: `Entrepreneur of the Year, GIWL`, meta: `2019`, blurb: `Great Indian Women Leadership Award for enterprise.`, href: `${SITE}/awards/kanika-gupta-shori-awarded-with-entrepreneur-of-the-year-2019-by-great-indian-women-leadership` },
-  { title: `Times 40 Under 40`, meta: `The Times`, href: `${SITE}/awards/kanika-gupta-shori-makes-it-to-list-times-40-under-40-recognizes-true-leaders-in-various-segments` },
-  { title: `Businessworld 40 Under 40`, meta: `2019`, href: `${SITE}/awards/ms-kanika-gupta-shori-presented-with-businessworld-40-under-40-award` },
-  { title: `BW Disrupt 40 Under 40`, meta: `BW Disrupt`, href: `${SITE}/awards/changer-makers-innovators-celebrated-at-4th-edition-of-bw-disrupt-under-40` },
-  { title: `Realty+ 40 Under 40`, meta: `Realty+`, href: `${SITE}/awards/young-industry-leaders-feted-at-realty-40-under-40-conclave-awards-grand-finale` },
-  { title: `Red Herring Top 100 Asia`, meta: `2019`, href: `${SITE}/awards/square-yards-recognized-as-red-herring-top-100-asia-award-winner-2019` },
-  { title: `Golden Brick Awards`, meta: `2019`, href: `${SITE}/awards/square-yards-bagged-golden-brick-awards-2019` },
-  { title: `Real Estate Website of the Year`, meta: `2019`, href: `${SITE}/awards/square-yards-has-won-real-estate-website-of-the-year-2019` },
+  { title: `Times 40 Under 40`, meta: `The Times`, blurb: `Young leaders redefining Indian business.`, href: `${SITE}/awards/kanika-gupta-shori-makes-it-to-list-times-40-under-40-recognizes-true-leaders-in-various-segments` },
+  { title: `Businessworld 40 Under 40`, meta: `2019`, blurb: `Achievers under forty across sectors.`, href: `${SITE}/awards/ms-kanika-gupta-shori-presented-with-businessworld-40-under-40-award` },
+  { title: `BW Disrupt 40 Under 40`, meta: `BW Disrupt`, blurb: `Change-makers shaping new markets.`, href: `${SITE}/awards/changer-makers-innovators-celebrated-at-4th-edition-of-bw-disrupt-under-40` },
+  { title: `Realty+ 40 Under 40`, meta: `Realty+`, blurb: `Young industry leaders in real estate.`, href: `${SITE}/awards/young-industry-leaders-feted-at-realty-40-under-40-conclave-awards-grand-finale` },
+  { title: `Red Herring Top 100 Asia`, meta: `2019`, blurb: `Asia's most promising technology companies.`, href: `${SITE}/awards/square-yards-recognized-as-red-herring-top-100-asia-award-winner-2019` },
+  { title: `Golden Brick Awards`, meta: `2019`, blurb: `Excellence in real estate and property.`, href: `${SITE}/awards/square-yards-bagged-golden-brick-awards-2019` },
+  { title: `Real Estate Website of the Year`, meta: `2019`, blurb: `Best digital experience in property.`, href: `${SITE}/awards/square-yards-has-won-real-estate-website-of-the-year-2019` },
 ];
 
 export const youtubeChannel = `https://www.youtube.com/channel/UCtvscMBw983oIwtcdw62NYg`;
