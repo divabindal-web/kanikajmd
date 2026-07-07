@@ -4,7 +4,7 @@ import { videos, youtubeChannel } from "@/lib/content";
 
 export type Video = { id: string; title: string; tag: string; kind?: string };
 
-function VideoCard({ v }: { v: Video }) {
+export function VideoCard({ v }: { v: Video }) {
   return (
     <Reveal>
       <a
