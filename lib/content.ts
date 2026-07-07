@@ -1,141 +1,138 @@
-// ---------------------------------------------------------------------------
-// Single source of truth for all copy + links. No em dashes anywhere.
-// News / Awards individual links point to the live kanikaguptashori.com pages
-// (they resolve today). Swap to relative paths if you migrate those pages.
-// ---------------------------------------------------------------------------
+import { Reveal } from "./Motion";
+import { PlayIcon, ArrowUpRight } from "./Icons";
+import { videos, youtubeChannel } from "@/lib/content";
 
-const SITE = "https://www.kanikaguptashori.com";
+export type Video = { id: string; title: string; tag: string; kind?: string };
 
-export const identity = {
-  name: `Kanika Gupta Shori`,
-  firstName: `Kanika Gupta`,
-  lastName: `Shori`,
-  title: `Co-Founder and Chief Operating Officer, Square Yards`,
-  kicker: `CO-FOUNDER AND COO, SQUARE YARDS`,
-  positioning: `Building India's largest real estate marketplace, from search to settlement.`,
-  metaDescription: `Kanika Gupta Shori, COO and Co-Founder of Square Yards, honored as Woman Entrepreneur of the Year. Her visionary leadership is reshaping real estate with innovation and empowerment.`,
-};
+function VideoCard({ v }: { v: Video }) {
+  return (
+    <Reveal>
+      <a
+        href={`https://www.youtube.com/watch?v=${v.id}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block"
+      >
+        <div className="relative aspect-video w-full overflow-hidden border border-white/10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+            alt={v.title}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-ink/25 transition-colors duration-300 group-hover:bg-ink/10" />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-paper/90 text-ink transition-transform duration-300 group-hover:scale-110">
+              <PlayIcon className="ml-0.5 h-5 w-5" />
+            </span>
+          </span>
+        </div>
+        <span className="label mt-4 block text-emerald/80">{v.tag}</span>
+        <h3 className="mt-2 font-serif text-xl font-medium leading-snug tracking-tight text-paper transition-colors duration-300 group-hover:text-emerald/90 sm:text-2xl">
+          {v.title}
+        </h3>
+      </a>
+    </Reveal>
+  );
+}
 
-export const heroImage = `/kanika-hero.jpg`;
+function SideVideo({ v }: { v: Video }) {
+  return (
+    <a
+      href={`https://www.youtube.com/watch?v=${v.id}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-5"
+    >
+      <div className="relative w-36 shrink-0 overflow-hidden border border-white/10 sm:w-40">
+        <div className="aspect-video">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+            alt={v.title}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        </div>
+        <span className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-paper/90 text-ink transition-transform duration-300 group-hover:scale-110">
+            <PlayIcon className="ml-0.5 h-3.5 w-3.5" />
+          </span>
+        </span>
+      </div>
+      <div>
+        <span className="label block text-emerald/80">{v.tag}</span>
+        <h3 className="mt-1.5 font-serif text-lg font-medium leading-snug tracking-tight text-paper transition-colors duration-300 group-hover:text-emerald/90">
+          {v.title}
+        </h3>
+      </div>
+    </a>
+  );
+}
 
-export const bioShort = [
-  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. In just five years she scaled an Online to Offline platform into the country's largest distributor of new homes, with 2,700 employees across 10 countries and 40 cities.`,
-  `A Wharton Business School alumna and CFA Level 2 candidate, she spent over eleven years across asset management and entertainment before Square Yards, and invested family wealth as an angel investor while raising two boys.`,
-];
+export function VideosList({ items }: { items: Video[] }) {
+  return (
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((v) => (
+        <VideoCard key={v.id} v={v} />
+      ))}
+    </div>
+  );
+}
 
-export const bioFull = [
-  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. Square Yards is an Online to Offline (O2O) transaction platform that helps simplify the home buying process by providing end to end solutions for homebuyers. Square Yards has become India's largest distributor of new homes with 2,700 employees and presence across 10 countries and 40 cities in just 5 years since its inception. The platform facilitates USD $1 billion in gross transactions annually, driving USD $30 million in annualized revenue, and is one of the few Indian startups operating at EBITDA break-even.`,
-  `Kanika is a Wharton Business School alumna, a CFA Level 2 candidate, and holds a Bachelor in Economics from Delhi University. She is a highly qualified professional with over 11 years of experience, having worked across asset management and entertainment before starting Square Yards. She is a mother of two boys, and while bringing up her kids she invested family wealth in other startups as an angel investor.`,
-  `A multi-talented and versatile personality, she has been associated with social causes across women empowerment and children welfare, and has won several accolades including Young Achiever and Woman Icon. An avid traveller across 6 continents and 40+ countries, she is also a PADI certified scuba diver who has cage dived with sharks in the Pacific Ocean, explored ship wrecks in the Java Sea, dived caves in the Indian Ocean, and seen the corals of the Great Barrier Reef and the Red Sea.`,
-];
+export default function VideosSection() {
+  const [featured, ...rest] = videos;
+  return (
+    <section id="videos" className="bg-ink px-5 py-14 text-paper sm:px-8 md:py-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-9 flex items-end justify-between gap-4">
+          <div>
+            <span className="label text-emerald">Videos</span>
+            <h2 className="mt-3 font-serif text-3xl font-medium leading-none tracking-tight text-paper sm:text-4xl">
+              In conversation
+            </h2>
+          </div>
+        </div>
 
-export const quote = {
-  text: `As a woman, faith in yourself is the most important thing.`,
-  attribution: `Kanika Gupta Shori`,
-};
+        <div className="grid gap-9 lg:grid-cols-12 lg:items-stretch lg:gap-12">
+          <Reveal className="lg:col-span-8">
+            <div className="relative aspect-video w-full overflow-hidden border border-white/10">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube-nocookie.com/embed/${featured.id}`}
+                title={featured.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <span className="label mt-4 block text-emerald/80">
+              {featured.tag}
+            </span>
+            <h3 className="mt-2 font-serif text-2xl font-medium leading-snug tracking-tight text-paper">
+              {featured.title}
+            </h3>
+          </Reveal>
 
-export const highlights = [
-  `Wharton Alumna`,
-  `CFA Level 2 Candidate`,
-  `11+ Years Experience`,
-  `Angel Investor`,
-  `40+ Countries`,
-  `PADI Certified Diver`,
-];
-
-export const stats = [
-  { prefix: "$", value: 1, suffix: "B", caption: "Gross transactions, annually" },
-  { prefix: "$", value: 30, suffix: "M", caption: "Annualized revenue" },
-  { prefix: "", value: 2700, suffix: "", caption: "Employees" },
-  { prefix: "", value: 10, suffix: "", caption: "Countries" },
-  { prefix: "", value: 40, suffix: "", caption: "Cities" },
-];
-
-export const pressNames = [
-  `Inc42`,
-  `Forbes India`,
-  `Livemint`,
-  `Josh Talks`,
-  `GIWL Summit 2019`,
-  `YourStory`,
-];
-
-export const news = [
-  { title: `Kanika Gupta Shori on Women Leadership and Technology Transforming Indian Real Estate`, tag: `Leadership`, href: `${SITE}/news/kanika-gupta-shori-on-women-leadership-and-technology-transforming-indian-real-estate` },
-  { title: `The Rise of Real Estate Investments Among Bollywood Elites in 2024`, tag: `Celebrity`, href: `${SITE}/news/the-rise-of-real-estate-investments-among-bollywood-elites-in-2024` },
-  { title: `The Ultimate Strength of Bulk Buying in Real Estate`, tag: `Market`, href: `${SITE}/news/the-ultimate-strength-of-bulk-buying-in-real-estate` },
-  { title: `Celebrity Property Purchases Are Transforming Indian Real Estate`, tag: `Celebrity`, href: `${SITE}/news/celebrity-property-purchases-are-transforming-indian-real-estate` },
-  { title: `Bachchans Acing the Race in Bollywood's Real Estate Love Affair in Mumbai`, tag: `Celebrity`, href: `${SITE}/news/bachchans-acing-the-race-in-bollywoods-real-estate-love-affair-in-mumbai` },
-  { title: `Why Real Estate Developers Are Not Taking to Affordable Housing`, tag: `Housing`, href: `${SITE}/news/why-real-estate-developers-are-not-taking-to-affordable-housing` },
-  { title: `Kanika Gupta Shori Talks About Difficulties Faced by Women-Driven Startups`, tag: `Leadership`, href: `${SITE}/news/kanika-gupta-shori-talks-about-difficulties-faced-by-women-driven-startups` },
-  { title: `Women are Steadily Reshaping Indian Real Estate Narratives`, tag: `Leadership`, href: `${SITE}/news/women-are-steadily-reshaping-indian-real-estate-narratives` },
-  { title: `Indian Real Estate Market to Become More Robust in Times of Constant Price Rises`, tag: `Market`, href: `${SITE}/news/indian-real-estate-market-to-become-more-robust-in-times-of-constant-price-rises` },
-];
-
-export const awards = [
-  { title: `Women Icon of the Year`, meta: `2023`, blurb: `Recognising India's most influential women leaders.`, href: `${SITE}/awards/kanika-gupta-shori-wins-the-women-icon-of-the-year-award-2023` },
-  { title: `Entrepreneur of the Year, GIWL`, meta: `2019`, blurb: `Great Indian Women Leadership Award for enterprise.`, href: `${SITE}/awards/kanika-gupta-shori-awarded-with-entrepreneur-of-the-year-2019-by-great-indian-women-leadership` },
-  { title: `Times 40 Under 40`, meta: `The Times`, blurb: `Young leaders redefining Indian business.`, href: `${SITE}/awards/kanika-gupta-shori-makes-it-to-list-times-40-under-40-recognizes-true-leaders-in-various-segments` },
-  { title: `Businessworld 40 Under 40`, meta: `2019`, blurb: `Achievers under forty across sectors.`, href: `${SITE}/awards/ms-kanika-gupta-shori-presented-with-businessworld-40-under-40-award` },
-  { title: `BW Disrupt 40 Under 40`, meta: `BW Disrupt`, blurb: `Change-makers shaping new markets.`, href: `${SITE}/awards/changer-makers-innovators-celebrated-at-4th-edition-of-bw-disrupt-under-40` },
-  { title: `Realty+ 40 Under 40`, meta: `Realty+`, blurb: `Young industry leaders in real estate.`, href: `${SITE}/awards/young-industry-leaders-feted-at-realty-40-under-40-conclave-awards-grand-finale` },
-  { title: `Red Herring Top 100 Asia`, meta: `2019`, blurb: `Asia's most promising technology companies.`, href: `${SITE}/awards/square-yards-recognized-as-red-herring-top-100-asia-award-winner-2019` },
-  { title: `Golden Brick Awards`, meta: `2019`, blurb: `Excellence in real estate and property.`, href: `${SITE}/awards/square-yards-bagged-golden-brick-awards-2019` },
-  { title: `Real Estate Website of the Year`, meta: `2019`, blurb: `Best digital experience in property.`, href: `${SITE}/awards/square-yards-has-won-real-estate-website-of-the-year-2019` },
-];
-
-export const blogs = [
-  { title: `Green Home Demand Goes up Throughout India`, tag: `Sustainability`, date: `June 2023`, href: `${SITE}/article/green-home-demand-goes-up-throughout-india` },
-  { title: `Time is Limited! How Do You Want to Spend It?`, tag: `Perspective`, date: `February 2020`, href: `${SITE}/article/time-is-limited-how-do-you-want-to-spend-it-doing-your-karma-or-complaining` },
-  { title: `Global Citizenship: Is It Even a Real Thing?`, tag: `Perspective`, date: `February 2020`, href: `${SITE}/article/global-citizenship-is-it-even-a-real-thing` },
-  { title: `My Journey to the Top of the World`, tag: `Travel`, date: `December 2019`, href: `${SITE}/article/my-journey-to-the-top-of-the-world` },
-  { title: `Why Women Are Paid Less`, tag: `Women`, date: `November 2019`, href: `${SITE}/article/why-women-are-paid-less` },
-  { title: `While We Teach Our Children About Life, Our Children Teach Us What Life is All About`, tag: `Family`, date: `November 2019`, href: `${SITE}/article/while-we-try-to-teach-our-children-all-about-life-our-children-teach-us-what-life-is-all-about` },
-  { title: `Change is the Only Constant. So Why Fear Changing Houses?`, tag: `Living`, date: `September 2019`, href: `${SITE}/article/change-is-the-only-constant-thing-in-the-world-so-why-fear-changing-houses` },
-];
-
-export const linkedin = {
-  activity: `https://www.linkedin.com/in/kanikaguptashori/recent-activity/all/`,
-  profile: `https://www.linkedin.com/in/kanikaguptashori/`,
-  // Optional: paste a short excerpt of her latest post here to feature it on
-  // the home page. Leave empty to show the standing card only.
-  featuredExcerpt: ``,
-  featuredDate: ``,
-};
-
-export const youtubeChannel = `https://www.youtube.com/channel/UCtvscMBw983oIwtcdw62NYg`;
-
-export const videos = [
-  { id: `N8_iuqP_XM4`, title: `Josh Talks: What It Takes to Become a Successful Entrepreneur`, tag: `Josh Talks`, kind: `video` },
-  { id: `K3jIPu0VSzU`, title: `Growth Hacks: Building a Real Estate Marketplace`, tag: `Podcast`, kind: `podcast` },
-  { id: `5bR9qSj0Hqc`, title: `How Square Yards Helped Her Discover Herself`, tag: `Feature`, kind: `video` },
-];
-
-export const squareYardsShort = `Square Yards is a technology-enabled, global real estate aggregator and India's largest player for primary residential real estate. Its platform covers the full journey, from search and discovery to research, transactions, home loans and post-sales service, integrating buyers with a network of 500+ partner developers and 90+ banks and NBFCs.`;
-
-export const socials = [
-  { name: "linkedin" as const, label: "LinkedIn", href: "https://www.linkedin.com/in/kanikaguptashori/" },
-  { name: "instagram" as const, label: "Instagram", href: "https://www.instagram.com/kanika_gupta_shori/" },
-  { name: "facebook" as const, label: "Facebook", href: "https://www.facebook.com/kanika.shori" },
-  { name: "youtube" as const, label: "YouTube", href: "https://www.youtube.com/channel/UCtvscMBw983oIwtcdw62NYg" },
-];
-
-export const squareYardsSocials = [
-  { name: "linkedin" as const, label: "LinkedIn", href: "https://www.linkedin.com/company/square-yards" },
-  { name: "instagram" as const, label: "Instagram", href: "https://www.instagram.com/square_yards/" },
-  { name: "facebook" as const, label: "Facebook", href: "https://www.facebook.com/SquareYards" },
-];
-
-export const networkLinks = [
-  { label: "Property News India", href: "https://www.globalrealtybytes.com/" },
-  { label: "Book Property Online", href: "https://book.squareyards.com/" },
-  { label: "Square Yards Wiki", href: "https://en.wikipedia.org/wiki/Square_Yards" },
-];
-
-export const navLinks = [
-  { label: "About", href: "/about" },
-  { label: "News", href: "/news" },
-  { label: "Awards", href: "/awards" },
-  { label: "Videos", href: "/videos" },
-  { label: "Blogs", href: "/blogs" },
-];
+          <Reveal className="lg:col-span-4">
+            <div className="flex h-full flex-col justify-between gap-8">
+              <div className="flex flex-col gap-7">
+                {rest.map((v) => (
+                  <SideVideo key={v.id} v={v} />
+                ))}
+              </div>
+              <a
+                href={youtubeChannel}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between border border-white/15 px-5 py-4 transition-colors duration-300 hover:border-emerald"
+              >
+                <span className="label text-paper">Watch all on YouTube</span>
+                <ArrowUpRight className="h-4 w-4 text-emerald transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
