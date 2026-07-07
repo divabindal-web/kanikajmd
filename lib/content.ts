@@ -84,12 +84,31 @@ export const awards = [
   { title: `Real Estate Website of the Year`, meta: `2019`, blurb: `Best digital experience in property.`, href: `${SITE}/awards/square-yards-has-won-real-estate-website-of-the-year-2019` },
 ];
 
+export const blogs = [
+  { title: `Green Home Demand Goes up Throughout India`, tag: `Sustainability`, date: `June 2023`, href: `${SITE}/article/green-home-demand-goes-up-throughout-india` },
+  { title: `Time is Limited! How Do You Want to Spend It?`, tag: `Perspective`, date: `February 2020`, href: `${SITE}/article/time-is-limited-how-do-you-want-to-spend-it-doing-your-karma-or-complaining` },
+  { title: `Global Citizenship: Is It Even a Real Thing?`, tag: `Perspective`, date: `February 2020`, href: `${SITE}/article/global-citizenship-is-it-even-a-real-thing` },
+  { title: `My Journey to the Top of the World`, tag: `Travel`, date: `December 2019`, href: `${SITE}/article/my-journey-to-the-top-of-the-world` },
+  { title: `Why Women Are Paid Less`, tag: `Women`, date: `November 2019`, href: `${SITE}/article/why-women-are-paid-less` },
+  { title: `While We Teach Our Children About Life, Our Children Teach Us What Life is All About`, tag: `Family`, date: `November 2019`, href: `${SITE}/article/while-we-try-to-teach-our-children-all-about-life-our-children-teach-us-what-life-is-all-about` },
+  { title: `Change is the Only Constant. So Why Fear Changing Houses?`, tag: `Living`, date: `September 2019`, href: `${SITE}/article/change-is-the-only-constant-thing-in-the-world-so-why-fear-changing-houses` },
+];
+
+export const linkedin = {
+  activity: `https://www.linkedin.com/in/kanikaguptashori/recent-activity/all/`,
+  profile: `https://www.linkedin.com/in/kanikaguptashori/`,
+  // Optional: paste a short excerpt of her latest post here to feature it on
+  // the home page. Leave empty to show the standing card only.
+  featuredExcerpt: ``,
+  featuredDate: ``,
+};
+
 export const youtubeChannel = `https://www.youtube.com/channel/UCtvscMBw983oIwtcdw62NYg`;
 
 export const videos = [
-  { id: `N8_iuqP_XM4`, title: `Josh Talks: What It Takes to Become a Successful Entrepreneur`, tag: `Josh Talks` },
-  { id: `K3jIPu0VSzU`, title: `Growth Hacks: Building a Real Estate Marketplace`, tag: `Interview` },
-  { id: `5bR9qSj0Hqc`, title: `How Square Yards Helped Her Discover Herself`, tag: `Feature` },
+  { id: `N8_iuqP_XM4`, title: `Josh Talks: What It Takes to Become a Successful Entrepreneur`, tag: `Josh Talks`, kind: `video` },
+  { id: `K3jIPu0VSzU`, title: `Growth Hacks: Building a Real Estate Marketplace`, tag: `Podcast`, kind: `podcast` },
+  { id: `5bR9qSj0Hqc`, title: `How Square Yards Helped Her Discover Herself`, tag: `Feature`, kind: `video` },
 ];
 
 export const squareYardsShort = `Square Yards is a technology-enabled, global real estate aggregator and India's largest player for primary residential real estate. Its platform covers the full journey, from search and discovery to research, transactions, home loans and post-sales service, integrating buyers with a network of 500+ partner developers and 90+ banks and NBFCs.`;
@@ -118,4 +137,5 @@ export const navLinks = [
   { label: "News", href: "/news" },
   { label: "Awards", href: "/awards" },
   { label: "Videos", href: "/videos" },
+  { label: "Blogs", href: "/blogs" },
 ];
