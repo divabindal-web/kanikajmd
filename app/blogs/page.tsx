@@ -13,74 +13,82 @@ export const metadata: Metadata = {
 
 type Blog = { title: string; tag: string; date: string; href: string };
 
-const TONES = [
-  {
-    card: "bg-emerald border-emerald",
-    title: "text-paper",
-    meta: "text-paper/70",
-    read: "text-paper",
-    mark: "text-white/[0.08]",
-  },
-  {
-    card: "bg-paper border-line hover:border-emerald",
-    title: "text-ink group-hover:text-emerald",
-    meta: "text-muted",
-    read: "text-emerald",
-    mark: "text-emerald/[0.07]",
-  },
-  {
-    card: "bg-mist border-line hover:border-emerald",
-    title: "text-ink group-hover:text-emerald",
-    meta: "text-muted",
-    read: "text-emerald",
-    mark: "text-emerald/[0.08]",
-  },
-  {
-    card: "bg-ink border-ink",
-    title: "text-paper",
-    meta: "text-paper/60",
-    read: "text-paper",
-    mark: "text-white/[0.07]",
-  },
-];
-
-function EssayCard({ b, i, wide = false }: { b: Blog; i: number; wide?: boolean }) {
-  const t = TONES[i % TONES.length];
+/* Lead essay: emerald feature spread with a giant outlined monogram */
+function LeadEssay({ b }: { b: Blog }) {
+  const monogram = b.title.trim().charAt(0).toUpperCase();
   return (
-    <Reveal delay={(i % 3) * 0.05} className={wide ? "sm:col-span-2" : ""}>
+    <Reveal>
       <a
         href={b.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`group relative flex h-full min-h-[250px] flex-col justify-between overflow-hidden border p-8 transition-all duration-500 hover:-translate-y-1 sm:p-9 ${t.card}`}
+        className="group relative block overflow-hidden bg-emerald text-paper"
       >
         <span
           aria-hidden="true"
-          className={`pointer-events-none absolute -right-4 -top-16 font-serif text-[11rem] font-medium italic leading-none ${t.mark}`}
+          style={{ WebkitTextStroke: "1.5px rgba(255,255,255,0.22)", color: "transparent" }}
+          className="pointer-events-none absolute -right-6 -top-16 select-none font-serif text-[16rem] font-medium leading-none transition-transform duration-700 group-hover:scale-105 sm:-right-2 sm:text-[22rem]"
         >
-          &rdquo;
+          {monogram}
         </span>
-        <div className="relative flex items-center justify-between gap-4">
-          <span className={`label ${t.meta}`}>{b.tag}</span>
-          <span className={`label ${t.meta}`}>{b.date}</span>
+        <div className="relative flex min-h-[320px] flex-col justify-between p-8 sm:min-h-[380px] sm:p-12">
+          <div className="flex items-center gap-4">
+            <span className="label bg-paper px-3 py-1.5 text-emerald">
+              Latest essay
+            </span>
+            <span className="label text-paper/70">{b.tag}</span>
+            <span className="h-px w-8 bg-paper/30" />
+            <span className="label text-paper/70">{b.date}</span>
+          </div>
+          <div className="max-w-2xl">
+            <h2 className="font-serif text-[clamp(2rem,5vw,3.6rem)] font-medium leading-[1.03] tracking-tight text-paper">
+              {b.title}
+            </h2>
+            <span className="label mt-7 inline-flex items-center gap-2 border-b border-paper/40 pb-1 text-paper transition-colors duration-300 group-hover:border-paper">
+              Read essay
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </div>
         </div>
-        <div className="relative mt-10">
-          <h2
-            className={`font-serif font-medium italic leading-[1.12] tracking-tight transition-colors duration-500 ${
-              wide
-                ? "text-3xl sm:text-[2.6rem]"
-                : "text-2xl sm:text-[1.75rem]"
-            } ${t.title}`}
-          >
-            {b.title}
-          </h2>
-          <span
-            className={`label mt-6 inline-flex items-center gap-2 ${t.read}`}
-          >
-            Read essay
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </a>
+    </Reveal>
+  );
+}
+
+/* Index rows: numeral, meta, big upright serif title, inversion on hover */
+function EssayRow({ b, n }: { b: Blog; n: number }) {
+  return (
+    <Reveal>
+      <a
+        href={b.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative grid grid-cols-[3rem_1fr_auto] items-center gap-5 overflow-hidden border-t border-line py-7 sm:grid-cols-[5rem_9rem_1fr_auto] sm:gap-8 sm:py-9"
+      >
+        <span className="absolute inset-0 z-0 origin-bottom scale-y-0 bg-emerald transition-transform duration-500 ease-editorial group-hover:scale-y-100" />
+
+        <span className="relative z-10 font-serif text-3xl font-medium leading-none text-emerald/30 transition-colors duration-300 group-hover:text-paper/40 sm:text-5xl">
+          {String(n).padStart(2, "0")}
+        </span>
+
+        <span className="relative z-10 hidden flex-col gap-1.5 sm:flex">
+          <span className="label text-emerald transition-colors duration-300 group-hover:text-paper/70">
+            {b.tag}
           </span>
-        </div>
+          <span className="label text-muted transition-colors duration-300 group-hover:text-paper/50">
+            {b.date}
+          </span>
+        </span>
+
+        <span className="relative z-10 font-serif text-xl font-medium leading-[1.15] tracking-tight text-ink transition-colors duration-300 group-hover:text-paper sm:text-[1.75rem]">
+          {b.title}
+        </span>
+
+        <span className="relative z-10 hidden shrink-0 sm:block">
+          <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-emerald transition-all duration-500 group-hover:rotate-45 group-hover:border-paper/50 group-hover:text-paper">
+            <ArrowUpRight className="h-4 w-4" />
+          </span>
+        </span>
       </a>
     </Reveal>
   );
@@ -110,10 +118,17 @@ export default function BlogsPage() {
 
       <section className="bg-paper px-5 pb-16 sm:px-8 md:pb-20">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <EssayCard b={lead} i={0} wide />
+          <LeadEssay b={lead} />
+
+          <div className="mt-14 hidden grid-cols-[5rem_9rem_1fr_auto] gap-8 pb-4 sm:grid">
+            <span className="label text-muted">No</span>
+            <span className="label text-muted">Subject</span>
+            <span className="label text-muted">Essay</span>
+            <span />
+          </div>
+          <div className="border-b border-line sm:mt-0 mt-12">
             {rest.map((b, i) => (
-              <EssayCard key={b.href} b={b} i={i + 1} />
+              <EssayRow key={b.href} b={b} n={i + 2} />
             ))}
           </div>
         </div>
