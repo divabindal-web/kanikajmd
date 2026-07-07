@@ -100,7 +100,7 @@ export const linkedin = {
   // VISUAL PREVIEW: paste the link to her latest post below and the home page
   // renders the actual LinkedIn post card. To get it: open the post on
   // LinkedIn, click the three dots, "Copy link to post", paste here.
-  postUrl: `https://www.linkedin.com/feed/update/urn:li:activity:7478382612382638080/`,``,
+  postUrl: `https://www.linkedin.com/feed/update/urn:li:activity:7478382612382638080/`,
   // Fallback if no postUrl: paste a short excerpt of her latest post to show
   // it as a styled quote. Leave both empty for the standing card.
   featuredExcerpt: ``,
