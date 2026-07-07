@@ -5,6 +5,7 @@ import AboutSpread from "@/components/AboutSpread";
 import NewsSection from "@/components/News";
 import AwardsSection from "@/components/Awards";
 import VideosSection from "@/components/Videos";
+import LinkedInLatest from "@/components/LinkedInLatest";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <NewsSection />
       <AwardsSection />
       <VideosSection />
+      <LinkedInLatest />
     </>
   );
 }
