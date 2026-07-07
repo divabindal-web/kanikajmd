@@ -1,7 +1,13 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import Link from "next/link";
+import { useRef } from "react";
 import { MaskLine } from "./Motion";
 import HeroField from "./HeroField";
 import { identity, socials } from "@/lib/content";
@@ -11,8 +17,20 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Apple-style scroll parallax: the photo drifts slower than the page
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const photoY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+
   return (
-    <section className="relative overflow-hidden bg-paper px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:min-h-[92vh] lg:pt-32">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-paper px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:min-h-[92vh] lg:pt-32"
+    >
       <HeroField />
 
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:min-h-[inherit] lg:grid-cols-12 lg:gap-14">
@@ -74,12 +92,31 @@ export default function Hero() {
           className="lg:col-span-5"
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-mist">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={heroPhoto}
-              alt={identity.name}
-              className="photo-grade h-full w-full object-cover"
-            />
+            <motion.div
+              style={reduce ? undefined : { y: photoY }}
+              className="absolute inset-[-6%]"
+            >
+              <motion.img
+                src={heroPhoto}
+                alt={identity.name}
+                animate={
+                  reduce
+                    ? undefined
+                    : { scale: [1, 1.045] }
+                }
+                transition={
+                  reduce
+                    ? undefined
+                    : {
+                        duration: 16,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                      }
+                }
+                className="photo-grade h-full w-full object-cover"
+              />
+            </motion.div>
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
           </div>
         </motion.div>
