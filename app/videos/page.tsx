@@ -140,11 +140,12 @@ export default function VideosPage() {
 
       <section className="bg-ink px-5 py-14 text-paper sm:px-8 md:py-16">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8 flex items-center gap-4">
-            <span className="label text-emerald">Videos</span>
-            <span className="h-px flex-1 bg-white/10" />
-            <span className="label text-paper/40">
-              {String(vids.length).padStart(2, "0")}
+          <div className="mb-8 flex items-end justify-between border-b border-white/15 pb-4">
+            <h2 className="font-serif text-3xl font-medium leading-none tracking-tight text-paper sm:text-4xl">
+              Videos<span className="text-emerald">.</span>
+            </h2>
+            <span className="label text-paper/70">
+              {String(vids.length).padStart(2, "0")} entries
             </span>
           </div>
           <div className="flex flex-col gap-6">
@@ -162,11 +163,12 @@ export default function VideosPage() {
 
           {podcasts.length > 0 && (
             <>
-              <div className="mb-8 mt-14 flex items-center gap-4">
-                <span className="label text-emerald">Podcasts</span>
-                <span className="h-px flex-1 bg-white/10" />
-                <span className="label text-paper/40">
-                  {String(podcasts.length).padStart(2, "0")}
+              <div className="mb-8 mt-16 flex items-end justify-between border-b border-white/15 pb-4">
+                <h2 className="font-serif text-3xl font-medium leading-none tracking-tight text-paper sm:text-4xl">
+                  Podcasts<span className="text-emerald">.</span>
+                </h2>
+                <span className="label text-paper/70">
+                  {String(podcasts.length).padStart(2, "0")} entries
                 </span>
               </div>
               <div className="flex flex-col gap-6">
