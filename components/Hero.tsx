@@ -2,8 +2,10 @@
 
 import {
   motion,
+  useMotionValue,
   useReducedMotion,
   useScroll,
+  useSpring,
   useTransform,
 } from "framer-motion";
 import Link from "next/link";
@@ -14,17 +16,112 @@ import { identity, socials } from "@/lib/content";
 import { heroPhoto } from "@/lib/images";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const TILT = 7; // max tilt in degrees
+
+function TiltPhoto() {
+  const reduce = useReducedMotion();
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const gx = useMotionValue(50);
+  const gy = useMotionValue(50);
+  const srx = useSpring(rx, { stiffness: 140, damping: 16, mass: 0.5 });
+  const sry = useSpring(ry, { stiffness: 140, damping: 16, mass: 0.5 });
+  const glare = useTransform(
+    [gx, gy],
+    ([x, y]) =>
+      `radial-gradient(320px circle at ${x}% ${y}%, rgba(255,255,255,0.16), rgba(255,255,255,0) 60%)`
+  );
+
+  const onMove = (e: React.MouseEvent) => {
+    if (reduce) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    ry.set((px - 0.5) * 2 * TILT);
+    rx.set(-(py - 0.5) * 2 * TILT);
+    gx.set(px * 100);
+    gy.set(py * 100);
+  };
+  const onLeave = () => {
+    rx.set(0);
+    ry.set(0);
+    gx.set(50);
+    gy.set(50);
+  };
+
+  return (
+    <div style={{ perspective: "1100px" }}>
+      <motion.div
+        ref={cardRef}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={
+          reduce
+            ? undefined
+            : { rotateX: srx, rotateY: sry, transformStyle: "preserve-3d" }
+        }
+        className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-mist shadow-[0_30px_70px_-30px_rgba(21,23,26,0.35)]"
+      >
+        {/* idle sway: a slow revolve when the cursor is elsewhere */}
+        <motion.div
+          animate={reduce ? undefined : { rotateY: [-1.6, 1.6] }}
+          transition={
+            reduce
+              ? undefined
+              : {
+                  duration: 9,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                }
+          }
+          style={{ transformStyle: "preserve-3d" }}
+          className="absolute inset-0"
+        >
+          <motion.img
+            src={heroPhoto}
+            alt={identity.name}
+            animate={reduce ? undefined : { scale: [1.02, 1.06] }}
+            transition={
+              reduce
+                ? undefined
+                : {
+                    duration: 16,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  }
+            }
+            className="photo-grade h-full w-full object-cover"
+          />
+        </motion.div>
+
+        {/* cursor-tracked light sheen */}
+        {!reduce && (
+          <motion.div
+            style={{ backgroundImage: glare }}
+            className="pointer-events-none absolute inset-0"
+          />
+        )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
+      </motion.div>
+    </div>
+  );
+}
 
 export default function Hero() {
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Apple-style scroll parallax: the photo drifts slower than the page
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const photoY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+  const photoY = useTransform(scrollYProgress, [0, 1], ["0%", "9%"]);
 
   return (
     <section
@@ -89,36 +186,10 @@ export default function Hero() {
           initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
+          style={reduce ? undefined : { y: photoY }}
           className="lg:col-span-5"
         >
-          <div className="relative aspect-[4/5] w-full overflow-hidden border border-line bg-mist">
-            <motion.div
-              style={reduce ? undefined : { y: photoY }}
-              className="absolute inset-[-6%]"
-            >
-              <motion.img
-                src={heroPhoto}
-                alt={identity.name}
-                animate={
-                  reduce
-                    ? undefined
-                    : { scale: [1, 1.045] }
-                }
-                transition={
-                  reduce
-                    ? undefined
-                    : {
-                        duration: 16,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        ease: "easeInOut",
-                      }
-                }
-                className="photo-grade h-full w-full object-cover"
-              />
-            </motion.div>
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent" />
-          </div>
+          <TiltPhoto />
         </motion.div>
       </div>
     </section>
