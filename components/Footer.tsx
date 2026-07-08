@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { SocialIcon } from "./Icons";
-import { socials, identity } from "@/lib/content";
+import { SocialIcon, MailIcon } from "./Icons";
+import { socials, identity, email } from "@/lib/content";
 
 export default function Footer() {
   return (
@@ -15,6 +15,13 @@ export default function Footer() {
         </Link>
 
         <div className="flex items-center gap-5">
+          <a
+            href={`mailto:${email}`}
+            aria-label="Email"
+            className="text-graphite transition-colors duration-300 hover:text-emerald"
+          >
+            <MailIcon className="h-[18px] w-[18px]" />
+          </a>
           {socials.map((s) => (
             <a
               key={s.name}
@@ -30,7 +37,7 @@ export default function Footer() {
         </div>
 
         <p className="text-xs text-muted">
-          © Square Yards Consulting Private Limited | 2025
+          © Square Yards Consulting Private Limited | 2026
         </p>
       </div>
     </footer>
