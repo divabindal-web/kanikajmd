@@ -19,12 +19,12 @@ export const identity = {
 export const heroImage = `/kanika-hero.jpg`;
 
 export const bioShort = [
-  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. In just five years she scaled an Online to Offline platform into the country's largest distributor of new homes, with 2,700 employees across 10 countries and 40 cities.`,
+  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. She scaled an Online to Offline platform into the country's largest distributor of new homes, today operating across 9 countries and 100+ cities.`,
   `A Wharton Business School alumna and CFA Level 2 candidate, she spent over eleven years across asset management and entertainment before Square Yards, and invested family wealth as an angel investor while raising two boys.`,
 ];
 
 export const bioFull = [
-  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. Square Yards is an Online to Offline (O2O) transaction platform that helps simplify the home buying process by providing end to end solutions for homebuyers. Square Yards has become India's largest distributor of new homes with 2,700 employees and presence across 10 countries and 40 cities in just 5 years since its inception. The platform facilitates USD $1 billion in gross transactions annually, driving USD $30 million in annualized revenue, and is one of the few Indian startups operating at EBITDA break-even.`,
+  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. Square Yards is an Online to Offline (O2O) transaction platform that helps simplify the home buying process by providing end to end solutions for homebuyers. Square Yards has become India's largest distributor of new homes, operating across 9 countries and 100+ cities with a network of 150,000 agent partners. The platform facilitated over USD $7 billion in gross transaction value in FY25, driving more than USD $170 million in revenue, and is EBITDA positive.`,
   `Kanika is a Wharton Business School alumna, a CFA Level 2 candidate, and holds a Bachelor in Economics from Delhi University. She is a highly qualified professional with over 11 years of experience, having worked across asset management and entertainment before starting Square Yards. She is a mother of two boys, and while bringing up her kids she invested family wealth in other startups as an angel investor.`,
   `A multi-talented and versatile personality, she has been associated with social causes across women empowerment and children welfare, and has won several accolades including Young Achiever and Woman Icon. An avid traveller across 6 continents and 40+ countries, she is also a PADI certified scuba diver who has cage dived with sharks in the Pacific Ocean, explored ship wrecks in the Java Sea, dived caves in the Indian Ocean, and seen the corals of the Great Barrier Reef and the Red Sea.`,
 ];
@@ -44,11 +44,11 @@ export const highlights = [
 ];
 
 export const stats = [
-  { prefix: "$", value: 1, suffix: "B", caption: "Gross transactions, annually" },
-  { prefix: "$", value: 30, suffix: "M", caption: "Annualized revenue" },
-  { prefix: "", value: 2700, suffix: "", caption: "Employees" },
-  { prefix: "", value: 10, suffix: "", caption: "Countries" },
-  { prefix: "", value: 40, suffix: "", caption: "Cities" },
+  { prefix: "$", value: 7, suffix: "B", caption: "Gross transaction value, FY25" },
+  { prefix: "$", value: 170, suffix: "M", caption: "Revenue, FY25" },
+  { prefix: "", value: 9, suffix: "", caption: "Countries" },
+  { prefix: "", value: 100, suffix: "+", caption: "Cities" },
+  { prefix: "", value: 150, suffix: "K", caption: "Agent partners" },
 ];
 
 export const pressNames = [
@@ -116,6 +116,8 @@ export const videos = [
 ];
 
 export const squareYardsShort = `Square Yards is a technology-enabled, global real estate aggregator and India's largest player for primary residential real estate. Its platform covers the full journey, from search and discovery to research, transactions, home loans and post-sales service, integrating buyers with a network of 500+ partner developers and 90+ banks and NBFCs.`;
+
+export const email = `kanika.gupta@squareyards.com`;
 
 export const socials = [
   { name: "linkedin" as const, label: "LinkedIn", href: "https://www.linkedin.com/in/kanikaguptashori/" },
