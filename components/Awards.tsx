@@ -7,9 +7,10 @@ import { portraitPhoto, heroPhoto } from "@/lib/images";
 type Item = { title: string; meta: string; blurb?: string; href: string };
 
 const FEATURED_IMAGES = [portraitPhoto, heroPhoto];
+const FEATURED_POS = ["object-[center_28%]", "object-top"];
 
 /* Large photo award, home page only */
-function FeaturedAward({ a, img }: { a: Item; img: string }) {
+function FeaturedAward({ a, img, pos }: { a: Item; img: string; pos: string }) {
   return (
     <Reveal>
       <a
@@ -23,7 +24,7 @@ function FeaturedAward({ a, img }: { a: Item; img: string }) {
           src={img}
           alt=""
           aria-hidden="true"
-          className="photo-grade absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          className={`photo-grade absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${pos}`}
         />
         <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent" />
         <div className="relative flex h-full flex-col justify-end p-8 text-paper sm:p-9">
@@ -147,7 +148,7 @@ export default function AwardsSection() {
 
         <div className="grid gap-5 md:grid-cols-2">
           {featured.map((a, i) => (
-            <FeaturedAward key={a.href} a={a} img={FEATURED_IMAGES[i]} />
+            <FeaturedAward key={a.href} a={a} img={FEATURED_IMAGES[i]} pos={FEATURED_POS[i]} />
           ))}
         </div>
       </div>
