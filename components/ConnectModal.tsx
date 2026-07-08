@@ -3,8 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { Magnetic } from "./Motion";
-import { SocialIcon, ArrowUpRight } from "./Icons";
-import { socials, networkLinks, identity } from "@/lib/content";
+import { SocialIcon, MailIcon } from "./Icons";
+import { socials, identity, email } from "@/lib/content";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -69,10 +69,23 @@ export default function ConnectModal({
               Let&rsquo;s talk.
             </h2>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-              {identity.title}. Reach out on any channel below.
+              {identity.title}. Write directly or reach out on any channel.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <Magnetic className="mt-8 block">
+              <a
+                href={`mailto:${email}`}
+                className="flex w-full items-center justify-between gap-3 bg-emerald px-5 py-4 text-paper transition-colors duration-300 hover:bg-emerald-deep"
+              >
+                <span className="flex items-center gap-3">
+                  <MailIcon className="h-4 w-4" />
+                  <span className="label text-[0.68rem]">{email}</span>
+                </span>
+                <span className="label text-[0.68rem] text-paper/70">Email</span>
+              </a>
+            </Magnetic>
+
+            <div className="mt-4 flex flex-wrap gap-3">
               {socials.map((s) => (
                 <Magnetic key={s.name}>
                   <a
@@ -86,25 +99,6 @@ export default function ConnectModal({
                   </a>
                 </Magnetic>
               ))}
-            </div>
-
-            <div className="mt-9 border-t border-line pt-6">
-              <p className="label mb-4 text-muted">The Network</p>
-              <ul className="space-y-2.5">
-                {networkLinks.map((l) => (
-                  <li key={l.href}>
-                    <a
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 font-serif text-xl text-ink transition-colors hover:text-emerald"
-                    >
-                      {l.label}
-                      <ArrowUpRight className="h-3.5 w-3.5 text-emerald opacity-0 transition-opacity group-hover:opacity-100" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
           </motion.div>
         </motion.div>
