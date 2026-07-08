@@ -114,12 +114,37 @@ export default function VideosSection() {
           </Reveal>
 
           <Reveal className="lg:col-span-4">
-            <div className="flex h-full flex-col justify-between gap-8">
-              <div className="flex flex-col gap-7">
-                {rest.map((v) => (
-                  <SideVideo key={v.id} v={v} />
-                ))}
-              </div>
+            <div className="flex h-full flex-col gap-6">
+              {rest.map((v) => (
+                <a
+                  key={v.id}
+                  href={`https://www.youtube.com/watch?v=${v.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-1 flex-col"
+                >
+                  <div className="relative w-full flex-1 overflow-hidden border border-white/10">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+                      alt={v.title}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-ink/25 transition-colors duration-300 group-hover:bg-ink/10" />
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-paper/90 text-ink transition-transform duration-300 group-hover:scale-110">
+                        <PlayIcon className="ml-0.5 h-4 w-4" />
+                      </span>
+                    </span>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3 pt-3">
+                    <h3 className="font-serif text-lg font-medium leading-snug tracking-tight text-paper transition-colors duration-300 group-hover:text-emerald/90">
+                      {v.title}
+                    </h3>
+                    <span className="label shrink-0 text-emerald/80">{v.tag}</span>
+                  </div>
+                </a>
+              ))}
               <a
                 href={youtubeChannel}
                 target="_blank"
