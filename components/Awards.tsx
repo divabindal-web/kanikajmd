@@ -7,7 +7,7 @@ import { portraitPhoto, heroPhoto } from "@/lib/images";
 type Item = { title: string; meta: string; blurb?: string; href: string };
 
 const FEATURED_IMAGES = [portraitPhoto, heroPhoto];
-const FEATURED_POS = ["object-[center_28%]", "object-top"];
+const FEATURED_POS = ["object-[center_62%]", "object-[center_12%]"];
 
 /* Large photo award, home page only */
 function FeaturedAward({ a, img, pos }: { a: Item; img: string; pos: string }) {
