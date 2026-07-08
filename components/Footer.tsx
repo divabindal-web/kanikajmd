@@ -18,9 +18,9 @@ export default function Footer() {
           <a
             href={`mailto:${email}`}
             aria-label="Email"
-            className="text-graphite transition-colors duration-300 hover:text-emerald"
+            className="flex items-center text-graphite transition-colors duration-300 hover:text-emerald"
           >
-            <MailIcon className="h-[18px] w-[18px]" />
+            <MailIcon className="block h-[19px] w-[19px]" />
           </a>
           {socials.map((s) => (
             <a
@@ -29,9 +29,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={s.label}
-              className="text-graphite transition-colors duration-300 hover:text-emerald"
+              className="flex items-center text-graphite transition-colors duration-300 hover:text-emerald"
             >
-              <SocialIcon name={s.name} className="h-[18px] w-[18px]" />
+              <SocialIcon name={s.name} className="block h-[18px] w-[18px]" />
             </a>
           ))}
         </div>
