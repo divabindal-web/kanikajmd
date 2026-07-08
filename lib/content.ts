@@ -24,7 +24,7 @@ export const bioShort = [
 ];
 
 export const bioFull = [
-  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. Square Yards is an Online to Offline (O2O) transaction platform that helps simplify the home buying process by providing end to end solutions for homebuyers. Square Yards has become India's largest distributor of new homes, operating across 9 countries and 100+ cities with a network of 150,000 agent partners. The platform facilitated over USD $7 billion in gross transaction value in FY25, driving more than USD $170 million in revenue, and is EBITDA positive.`,
+  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. Square Yards is an Online to Offline (O2O) transaction platform that helps simplify the home buying process by providing end to end solutions for homebuyers. Square Yards has become India's largest distributor of new homes, operating across 9 countries and 100+ cities with a network of 150,000 agent partners. The platform delivered more than USD $223 million in revenue in FY26, growing 48 percent year on year, and has been EBITDA positive for three consecutive years.`,
   `Kanika is a Wharton Business School alumna, a CFA Level 2 candidate, and holds a Bachelor in Economics from Delhi University. She is a highly qualified professional with over 11 years of experience, having worked across asset management and entertainment before starting Square Yards. She is a mother of two boys, and while bringing up her kids she invested family wealth in other startups as an angel investor.`,
   `A multi-talented and versatile personality, she has been associated with social causes across women empowerment and children welfare, and has won several accolades including Young Achiever and Woman Icon. An avid traveller across 6 continents and 40+ countries, she is also a PADI certified scuba diver who has cage dived with sharks in the Pacific Ocean, explored ship wrecks in the Java Sea, dived caves in the Indian Ocean, and seen the corals of the Great Barrier Reef and the Red Sea.`,
 ];
@@ -44,8 +44,8 @@ export const highlights = [
 ];
 
 export const stats = [
-  { prefix: "$", value: 7, suffix: "B", caption: "Gross transaction value, FY25" },
-  { prefix: "$", value: 170, suffix: "M", caption: "Revenue, FY25" },
+  { prefix: "$", value: 223, suffix: "M", caption: "Revenue, FY26" },
+  { prefix: "", value: 53, suffix: "%", caption: "Five year revenue CAGR" },
   { prefix: "", value: 9, suffix: "", caption: "Countries" },
   { prefix: "", value: 100, suffix: "+", caption: "Cities" },
   { prefix: "", value: 150, suffix: "K", caption: "Agent partners" },
