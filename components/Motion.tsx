@@ -78,22 +78,38 @@ export function CountUp({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, amount: 0.2 });
   const reduce = useReducedMotion();
   const [display, setDisplay] = useState(0);
+  const started = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
-    if (reduce) {
-      setDisplay(value);
+    if (started.current) return;
+
+    const run = () => {
+      if (started.current) return;
+      started.current = true;
+      if (reduce) {
+        setDisplay(value);
+        return;
+      }
+      animate(0, value, {
+        // small numbers count faster so single digits feel as fluid as large ones
+        duration: value < 20 ? 0.9 : 1.6,
+        ease: EASE,
+        onUpdate: (v) => setDisplay(v),
+        onComplete: () => setDisplay(value),
+      });
+    };
+
+    if (inView) {
+      run();
       return;
     }
-    const controls = animate(0, value, {
-      duration: 1.6,
-      ease: EASE,
-      onUpdate: (v) => setDisplay(v),
-    });
-    return () => controls.stop();
+    // Safety net: whatever the device or observer quirks, the real number
+    // always lands. No screen can be left showing 0.
+    const t = setTimeout(run, 1800);
+    return () => clearTimeout(t);
   }, [inView, value, reduce]);
 
   return (
