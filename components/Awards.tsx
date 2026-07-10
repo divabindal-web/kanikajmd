@@ -1,149 +1,163 @@
-// ---------------------------------------------------------------------------
-// Single source of truth for all copy + links. No em dashes anywhere.
-// News / Awards individual links point to the live kanikaguptashori.com pages
-// (they resolve today). Swap to relative paths if you migrate those pages.
-// ---------------------------------------------------------------------------
+import { Reveal } from "./Motion";
+import { ArrowUpRight } from "./Icons";
+import MoreLink from "./MoreLink";
+import { awards } from "@/lib/content";
+import { portraitPhoto, heroPhoto } from "@/lib/images";
 
-const SITE = "https://www.kanikaguptashori.com";
+type Item = { title: string; meta: string; blurb?: string; href: string };
 
-export const identity = {
-  name: `Kanika Gupta Shori`,
-  firstName: `Kanika Gupta`,
-  lastName: `Shori`,
-  title: `Co-Founder and Chief Operating Officer, Square Yards`,
-  kicker: `CO-FOUNDER AND COO, SQUARE YARDS`,
-  positioning: `Building India's largest real estate marketplace, from search to settlement.`,
-  metaDescription: `Kanika Gupta Shori, COO and Co-Founder of Square Yards, honored as Woman Entrepreneur of the Year. Her visionary leadership is reshaping real estate with innovation and empowerment.`,
-};
+const FEATURED_IMAGES = [portraitPhoto, heroPhoto];
+const FEATURED_POS = ["object-[center_62%]", "object-[center_12%]"];
 
-export const heroImage = `/kanika-hero.jpg`;
+/* Large photo award, home page only */
+function FeaturedAward({ a, img, pos }: { a: Item; img: string; pos: string }) {
+  return (
+    <Reveal>
+      <a
+        href={a.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative block aspect-[4/5] overflow-hidden border border-line bg-ink sm:aspect-[16/11]"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={img}
+          alt=""
+          aria-hidden="true"
+          className={`photo-grade absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${pos}`}
+        />
+        <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-ink/95 via-ink/40 to-transparent" />
+        <div className="relative flex h-full flex-col justify-end p-8 text-paper sm:p-9">
+          <div className="flex items-end justify-between gap-6">
+            <div>
+              <span className="label text-paper/80">{a.meta}</span>
+              <h3 className="mt-3 font-serif text-3xl font-medium leading-[1.08] tracking-tight text-paper sm:text-4xl">
+                {a.title}
+              </h3>
+              {a.blurb && (
+                <p className="mt-2.5 max-w-sm text-sm leading-relaxed text-paper/70">
+                  {a.blurb}
+                </p>
+              )}
+            </div>
+            <ArrowUpRight className="mb-1.5 h-5 w-5 shrink-0 text-paper/80 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </div>
+        </div>
+      </a>
+    </Reveal>
+  );
+}
 
-export const bioShort = [
-  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. She scaled an Online to Offline platform into the country's largest distributor of new homes, today operating across 9 countries and 100+ cities.`,
-  `A Wharton Business School alumna and CFA Level 2 candidate, she spent over eleven years across asset management and entertainment before Square Yards, and invested family wealth as an angel investor while raising two boys.`,
+/* Colour-blocked award tiles for the /awards page */
+const TONES = [
+  {
+    card: "bg-emerald border-emerald",
+    title: "text-paper",
+    sub: "text-paper/70",
+    meta: "text-paper/70",
+    ghost: "text-white/[0.08]",
+    arrow: "text-paper",
+  },
+  {
+    card: "bg-paper border-line hover:border-emerald",
+    title: "text-ink group-hover:text-emerald",
+    sub: "text-muted",
+    meta: "text-muted",
+    ghost: "text-emerald/[0.07]",
+    arrow: "text-emerald",
+  },
+  {
+    card: "bg-ink border-ink",
+    title: "text-paper",
+    sub: "text-paper/60",
+    meta: "text-paper/60",
+    ghost: "text-white/[0.07]",
+    arrow: "text-paper",
+  },
+  {
+    card: "bg-paper border-line hover:border-emerald",
+    title: "text-ink group-hover:text-emerald",
+    sub: "text-muted",
+    meta: "text-muted",
+    ghost: "text-emerald/[0.07]",
+    arrow: "text-emerald",
+  },
 ];
 
-export const bioFull = [
-  `Kanika Gupta Shori is the Founder and COO of Square Yards, India's largest real estate marketplace. Square Yards is an Online to Offline (O2O) transaction platform that helps simplify the home buying process by providing end to end solutions for homebuyers. Square Yards has become India's largest distributor of new homes, operating across 9 countries and 100+ cities with a network of 150,000 agent partners. The platform delivered more than USD $223 million in revenue in FY26, growing 48 percent year on year, and has been EBITDA positive for three consecutive years.`,
-  `Kanika is a Wharton Business School alumna, a CFA Level 2 candidate, and holds a Bachelor in Economics from Delhi University. She is a highly qualified professional with over 11 years of experience, having worked across asset management and entertainment before starting Square Yards. She is a mother of two boys, and while bringing up her kids she invested family wealth in other startups as an angel investor.`,
-  `A multi-talented and versatile personality, she has been associated with social causes across women empowerment and children welfare, and has won several accolades including Young Achiever and Woman Icon. An avid traveller across 6 continents and 40+ countries, she is also a PADI certified scuba diver who has cage dived with sharks in the Pacific Ocean, explored ship wrecks in the Java Sea, dived caves in the Indian Ocean, and seen the corals of the Great Barrier Reef and the Red Sea.`,
-];
+function AwardTile({ a, i }: { a: Item; i: number }) {
+  const t = TONES[i % TONES.length];
+  return (
+    <Reveal delay={(i % 3) * 0.05}>
+      <a
+        href={a.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`group relative flex min-h-[230px] flex-col justify-between overflow-hidden border p-8 transition-all duration-500 hover:-translate-y-1 ${t.card}`}
+      >
+        <span
+          className={`pointer-events-none absolute -right-3 -top-6 font-serif text-[7rem] font-medium leading-none transition-transform duration-500 group-hover:scale-105 ${t.ghost}`}
+        >
+          {String(i + 1).padStart(2, "0")}
+        </span>
+        <div className="relative flex items-center justify-between">
+          <span className={`label ${t.meta}`}>{a.meta}</span>
+          <ArrowUpRight
+            className={`h-4 w-4 -translate-x-1 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 ${t.arrow}`}
+          />
+        </div>
+        <div className="relative mt-10">
+          <h3
+            className={`font-serif text-2xl font-medium leading-[1.12] tracking-tight transition-colors duration-500 sm:text-[1.7rem] ${t.title}`}
+          >
+            {a.title}
+          </h3>
+          {a.blurb && (
+            <p className={`mt-2.5 text-sm leading-relaxed ${t.sub}`}>{a.blurb}</p>
+          )}
+        </div>
+      </a>
+    </Reveal>
+  );
+}
 
-export const quote = {
-  text: `As a woman, faith in yourself is the most important thing.`,
-  attribution: `Kanika Gupta Shori`,
-};
+/* Full /awards grid */
+export function AwardsList({ items }: { items: Item[] }) {
+  return (
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((a, i) => (
+        <AwardTile key={a.href} a={a} i={i} />
+      ))}
+    </div>
+  );
+}
 
-export const highlights = [
-  `Wharton Alumna`,
-  `CFA Level 2 Candidate`,
-  `11+ Years Experience`,
-  `Angel Investor`,
-  `40+ Countries`,
-  `PADI Certified Diver`,
-];
+export default function AwardsSection() {
+  const featured = awards.slice(0, 2);
+  return (
+    <section id="awards" className="bg-mist px-5 py-14 sm:px-8 md:py-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-9 flex items-end justify-between gap-4">
+          <div>
+            <span className="label text-emerald">Awards</span>
+            <h2 className="mt-3 font-serif text-3xl font-medium leading-none tracking-tight text-ink sm:text-4xl">
+              Recognition
+            </h2>
+          </div>
+          <MoreLink href="/awards" label="All Awards" />
+        </div>
 
-export const stats = [
-  { prefix: "$", value: 223, suffix: "M", caption: "Revenue, FY26" },
-  { prefix: "", value: 53, suffix: "%", caption: "Five year revenue CAGR" },
-  { prefix: "", value: 9, suffix: "", caption: "Countries" },
-  { prefix: "", value: 100, suffix: "+", caption: "Cities" },
-  { prefix: "", value: 150, suffix: "K", caption: "Agent partners" },
-];
+        <div className="grid gap-5 md:grid-cols-2">
+          {featured.map((a, i) => (
+            <FeaturedAward key={a.href} a={a} img={FEATURED_IMAGES[i]} pos={FEATURED_POS[i]} />
+          ))}
+        </div>
 
-export const pressNames = [
-  `Inc42`,
-  `Forbes India`,
-  `Livemint`,
-  `Josh Talks`,
-  `GIWL Summit 2019`,
-  `YourStory`,
-];
-
-export const news = [
-  { title: `Kanika Gupta Shori on Women Leadership and Technology Transforming Indian Real Estate`, tag: `Leadership`, href: `${SITE}/news/kanika-gupta-shori-on-women-leadership-and-technology-transforming-indian-real-estate/` },
-  { title: `The Rise of Real Estate Investments Among Bollywood Elites in 2024`, tag: `Celebrity`, href: `${SITE}/news/the-rise-of-real-estate-investments-among-bollywood-elites-in-2024/` },
-  { title: `The Ultimate Strength of Bulk Buying in Real Estate`, tag: `Market`, href: `${SITE}/news/the-ultimate-strength-of-bulk-buying-in-real-estate/` },
-  { title: `Celebrity Property Purchases Are Transforming Indian Real Estate`, tag: `Celebrity`, href: `${SITE}/news/celebrity-property-purchases-are-transforming-indian-real-estate/` },
-  { title: `Bachchans Acing the Race in Bollywood's Real Estate Love Affair in Mumbai`, tag: `Celebrity`, href: `${SITE}/news/bachchans-acing-the-race-in-bollywoods-real-estate-love-affair-in-mumbai/` },
-  { title: `Why Real Estate Developers Are Not Taking to Affordable Housing`, tag: `Housing`, href: `${SITE}/news/why-real-estate-developers-are-not-taking-to-affordable-housing/` },
-  { title: `Kanika Gupta Shori Talks About Difficulties Faced by Women-Driven Startups`, tag: `Leadership`, href: `${SITE}/news/kanika-gupta-shori-talks-about-difficulties-faced-by-women-driven-startups/` },
-  { title: `Women are Steadily Reshaping Indian Real Estate Narratives`, tag: `Leadership`, href: `${SITE}/news/women-are-steadily-reshaping-indian-real-estate-narratives/` },
-  { title: `Indian Real Estate Market to Become More Robust in Times of Constant Price Rises`, tag: `Market`, href: `${SITE}/news/indian-real-estate-market-to-become-more-robust-in-times-of-constant-price-rises/` },
-];
-
-export const awards = [
-  { title: `Women Icon of the Year`, meta: `2023`, blurb: `Recognising India's most influential women leaders.`, href: `${SITE}/awards/kanika-gupta-shori-wins-the-women-icon-of-the-year-award-2023/` },
-  { title: `Entrepreneur of the Year, GIWL`, meta: `2019`, blurb: `Great Indian Women Leadership Award for enterprise.`, href: `${SITE}/awards/kanika-gupta-shori-awarded-with-entrepreneur-of-the-year-2019-by-great-indian-women-leadership/` },
-  { title: `Times 40 Under 40`, meta: `The Times`, blurb: `Young leaders redefining Indian business.`, href: `${SITE}/awards/kanika-gupta-shori-makes-it-to-list-times-40-under-40-recognizes-true-leaders-in-various-segments/` },
-  { title: `Businessworld 40 Under 40`, meta: `2019`, blurb: `Achievers under forty across sectors.`, href: `${SITE}/awards/ms-kanika-gupta-shori-presented-with-businessworld-40-under-40-award/` },
-  { title: `BW Disrupt 40 Under 40`, meta: `BW Disrupt`, blurb: `Change-makers shaping new markets.`, href: `${SITE}/awards/changer-makers-innovators-celebrated-at-4th-edition-of-bw-disrupt-under-40/` },
-  { title: `Realty+ 40 Under 40`, meta: `Realty+`, blurb: `Young industry leaders in real estate.`, href: `${SITE}/awards/young-industry-leaders-feted-at-realty-40-under-40-conclave-awards-grand-finale/` },
-  { title: `Red Herring Top 100 Asia`, meta: `2019`, blurb: `Asia's most promising technology companies.`, href: `${SITE}/awards/square-yards-recognized-as-red-herring-top-100-asia-award-winner-2019/` },
-  { title: `Golden Brick Awards`, meta: `2019`, blurb: `Excellence in real estate and property.`, href: `${SITE}/awards/square-yards-bagged-golden-brick-awards-2019/` },
-  { title: `Real Estate Website of the Year`, meta: `2019`, blurb: `Best digital experience in property.`, href: `${SITE}/awards/square-yards-has-won-real-estate-website-of-the-year-2019/` },
-];
-
-export const blogs = [
-  { title: `Green Home Demand Goes up Throughout India`, tag: `Sustainability`, date: `June 2023`, href: `${SITE}/article/green-home-demand-goes-up-throughout-india/` },
-  { title: `Time is Limited! How Do You Want to Spend It?`, tag: `Perspective`, date: `February 2020`, href: `${SITE}/article/time-is-limited-how-do-you-want-to-spend-it-doing-your-karma-or-complaining/` },
-  { title: `Global Citizenship: Is It Even a Real Thing?`, tag: `Perspective`, date: `February 2020`, href: `${SITE}/article/global-citizenship-is-it-even-a-real-thing/` },
-  { title: `My Journey to the Top of the World`, tag: `Travel`, date: `December 2019`, href: `${SITE}/article/my-journey-to-the-top-of-the-world/` },
-  { title: `Why Women Are Paid Less`, tag: `Women`, date: `November 2019`, href: `${SITE}/article/why-women-are-paid-less/` },
-  { title: `While We Teach Our Children About Life, Our Children Teach Us What Life is All About`, tag: `Family`, date: `November 2019`, href: `${SITE}/article/while-we-try-to-teach-our-children-all-about-life-our-children-teach-us-what-life-is-all-about/` },
-  { title: `Change is the Only Constant. So Why Fear Changing Houses?`, tag: `Living`, date: `September 2019`, href: `${SITE}/article/change-is-the-only-constant-thing-in-the-world-so-why-fear-changing-houses/` },
-];
-
-export const linkedin = {
-  activity: `https://www.linkedin.com/in/kanikaguptashori/recent-activity/all/`,
-  profile: `https://www.linkedin.com/in/kanikaguptashori/`,
-  // POSTS RAIL: newest first. For each post: open it on LinkedIn, three dots,
-  // "Copy link to post", paste as url. excerpt and date are optional but make
-  // the card look best. Add as many as you like; the rail scrolls.
-  posts: [
-    {
-      url: `https://www.linkedin.com/feed/update/urn:li:activity:7478382612382638080/`,
-      excerpt: ``,
-      date: ``,
-    },
-  ],
-};
-
-export const youtubeChannel = `https://www.youtube.com/channel/UCtvscMBw983oIwtcdw62NYg`;
-
-export const videos = [
-  { id: `5bR9qSj0Hqc`, title: `How Square Yards Helped Her Discover Herself`, tag: `Feature`, kind: `video` },
-  { id: `K3jIPu0VSzU`, title: `Growth Hacks: Building a Real Estate Marketplace`, tag: `Podcast`, kind: `podcast` },
-  { id: `N8_iuqP_XM4`, title: `Josh Talks: What It Takes to Become a Successful Entrepreneur`, tag: `Josh Talks`, kind: `video` },
-];
-
-export const squareYardsShort = `Square Yards is a technology-enabled, global real estate aggregator and India's largest player for primary residential real estate. Its platform covers the full journey, from search and discovery to research, transactions, home loans and post-sales service, integrating buyers with a network of 500+ partner developers and 90+ banks and NBFCs.`;
-
-export const email = `kanika.gupta@squareyards.com`;
-
-export const socials = [
-  { name: "linkedin" as const, label: "LinkedIn", href: "https://www.linkedin.com/in/kanikaguptashori/" },
-  { name: "instagram" as const, label: "Instagram", href: "https://www.instagram.com/kanika_gupta_shori/" },
-  { name: "facebook" as const, label: "Facebook", href: "https://www.facebook.com/kanika.shori" },
-  { name: "youtube" as const, label: "YouTube", href: "https://www.youtube.com/channel/UCtvscMBw983oIwtcdw62NYg" },
-];
-
-export const squareYardsSocials = [
-  { name: "linkedin" as const, label: "LinkedIn", href: "https://www.linkedin.com/company/square-yards" },
-  { name: "instagram" as const, label: "Instagram", href: "https://www.instagram.com/square_yards/" },
-  { name: "facebook" as const, label: "Facebook", href: "https://www.facebook.com/SquareYards" },
-];
-
-export const networkLinks = [
-  { label: "Property News India", href: "https://www.globalrealtybytes.com/" },
-  { label: "Book Property Online", href: "https://book.squareyards.com/" },
-  { label: "Square Yards Wiki", href: "https://en.wikipedia.org/wiki/Square_Yards" },
-];
-
-export const navLinks = [
-  { label: "About", href: "/about" },
-  { label: "News", href: "/news" },
-  { label: "Awards", href: "/awards" },
-  { label: "Videos", href: "/videos" },
-  { label: "Blogs", href: "/blogs" },
-];
+        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {awards.slice(2, 5).map((a, i) => (
+            <AwardTile key={a.href} a={a} i={i + 1} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
