@@ -18,8 +18,6 @@ function PressRow({ item, n }: { item: Item; n: number }) {
     <Reveal>
       <a
         href={item.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className="group relative grid grid-cols-[2.2rem_1fr_auto] items-baseline gap-4 overflow-hidden border-t border-line py-6 sm:grid-cols-[2.6rem_6.5rem_1fr_auto] sm:gap-6 sm:py-7"
       >
         <span className="absolute inset-0 z-0 origin-bottom scale-y-0 bg-emerald transition-transform duration-500 ease-editorial group-hover:scale-y-100" />

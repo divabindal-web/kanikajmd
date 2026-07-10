@@ -20,8 +20,6 @@ function LeadEssay({ b }: { b: Blog }) {
     <Reveal>
       <a
         href={b.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className="group relative block overflow-hidden bg-emerald text-paper"
       >
         <span
@@ -61,8 +59,6 @@ function EssayRow({ b, n }: { b: Blog; n: number }) {
     <Reveal>
       <a
         href={b.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className="group relative grid grid-cols-[3rem_1fr_auto] items-center gap-5 overflow-hidden border-t border-line py-7 sm:grid-cols-[5rem_9rem_1fr_auto] sm:gap-8 sm:py-9"
       >
         <span className="absolute inset-0 z-0 origin-bottom scale-y-0 bg-emerald transition-transform duration-500 ease-editorial group-hover:scale-y-100" />

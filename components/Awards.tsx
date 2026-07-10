@@ -15,8 +15,6 @@ function FeaturedAward({ a, img, pos }: { a: Item; img: string; pos: string }) {
     <Reveal>
       <a
         href={a.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className="group relative block aspect-[4/5] overflow-hidden border border-line bg-ink sm:aspect-[16/11]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -90,8 +88,6 @@ function AwardTile({ a, i }: { a: Item; i: number }) {
     <Reveal delay={(i % 3) * 0.05}>
       <a
         href={a.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className={`group relative flex min-h-[230px] flex-col justify-between overflow-hidden border p-8 transition-all duration-500 hover:-translate-y-1 ${t.card}`}
       >
         <span

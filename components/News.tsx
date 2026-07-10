@@ -18,8 +18,6 @@ export function NewsRow({
     <Reveal>
       <a
         href={item.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className={`group relative flex items-center gap-4 overflow-hidden border-t border-line sm:gap-6 ${
           compact ? "py-4" : "py-5"
         }`}
@@ -45,8 +43,6 @@ export function NewsLead({ item }: { item: Item }) {
   return (
     <a
       href={item.href}
-      target="_blank"
-      rel="noopener noreferrer"
       className="group block border-t-2 border-emerald pt-6"
     >
       <div className="flex items-center gap-3">
