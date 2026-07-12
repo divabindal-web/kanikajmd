@@ -113,6 +113,16 @@ export const linkedin = {
       excerpt: ``,
       date: ``,
     },
+    {
+      url: `https://www.linkedin.com/feed/update/urn:li:activity:7427241868058329088/`,
+      excerpt: ``,
+      date: ``,
+    },
+    {
+      url: `https://www.linkedin.com/feed/update/urn:li:activity:7400783782745829376/`,
+      excerpt: ``,
+      date: ``,
+    },
   ],
 };
 
